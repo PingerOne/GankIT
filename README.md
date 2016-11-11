@@ -13,7 +13,8 @@
 * 使用了大量绚丽的Material Design控件
 * 使用ResideMenu实现3D侧滑菜单
 * 使用MultipleTheme实现无缝切换主题
-* 使用Icon Font处理项目中的图标问题
+* 使用Icon Font处理项目中大部分图标
+* 使用Lambda表达式精选代码
 * 使用EasyRecyclerView处理数据条目
 * 电影数据抓包自咪咕影院
 * 干货数据来自Gank.io
