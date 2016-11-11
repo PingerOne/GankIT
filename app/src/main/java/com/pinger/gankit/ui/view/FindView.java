@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daprlabs.cardstack.SwipeFrameLayout;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.app.Constant;
 import com.pinger.gankit.base.RootView;
@@ -95,8 +98,8 @@ public class FindView extends RootView<FindContact.Presenter> implements FindCon
     @Override
     protected void initView() {
         MainActivity activity = (MainActivity) mContext;
-        mTvName.setText("发现");
-        mIvIcon.setImageResource(R.drawable.ic_find_in_page_white_24dp);
+        mTvName.setText(mContext.getString(R.string.video_faxian));
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_search_in_page).sizeDp(20));
 
         ViewGroup.LayoutParams params = mSwipeDeck.getLayoutParams();
         // 屏幕高度的2/3

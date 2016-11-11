@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.model.bean.VideoInfo;
@@ -112,8 +115,8 @@ public class SubjectView extends RootView<SubjectContact.Presenter> implements S
 
     @Override
     protected void initView() {
-        mTvName.setText("专题");
-        mIvIcon.setImageResource(R.drawable.ic_subject_white_24dp);
+        mTvName.setText(mContext.getString(R.string.video_zhuanti));
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_format_subject).sizeDp(20));
         MainActivity activity = (MainActivity) mContext;
         mAdapter = new SubjectAdapter(null);
         mEasyRecyclerView.setAdapterWithProgress(mAdapter);
