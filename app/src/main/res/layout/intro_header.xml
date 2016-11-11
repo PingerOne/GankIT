@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="@dimen/standard_x_small_margin">
+
+    <!--自带根据行数拉伸的TextView-->
+    <com.pinger.gankit.widget.TextViewExpandableAnimation
+        android:id="@+id/textViewExpandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tvea_expandBitmap="@drawable/ic_keyboard_arrow_down_white_24dp"
+        app:tvea_expandLines="3"
+        app:tvea_shrinkBitmap="@drawable/ic_keyboard_arrow_up_white_24dp"
+        app:tvea_textContentColor="@color/white"
+        app:tvea_textContentSize="14sp"
+        app:tvea_textExpand="@string/expand"
+        app:tvea_textShrink="@string/shrink"
+        app:tvea_textStateColor="?attr/colorPrimary"/>
+
+</LinearLayout>

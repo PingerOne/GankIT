@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.pinger.gankit"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:support-v4:25.0.0'
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:cardview-v7:25.0.0'
+    // material design对话框
+    compile 'com.afollestad.material-dialogs:core:0.9.0.2'
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
+    // butterknife注解获取控件id
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    // 3D侧滑
+    compile 'com.specyci:residemenu:1.6+'
+    // okgo 网络请求
+    compile 'com.lzy.net:okgo:2.0.0'
+    // 圆形头像
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    // fonts icon 字体图标
+    compile 'com.mikepenz:iconics-core:2.5.5@aar'
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
+    compile 'com.mikepenz:foundation-icons-typeface:3.0.0.1@aar'
+    // eventbus 组件通信
+    compile 'org.simple:androideventbus:1.0.5.1'
+    // Gson 解析json数据
+    compile 'com.google.code.gson:gson:2.4'
+    // RecyclerView万能适配器
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.1.3'
+    // 微信朋友圈九宫格显示
+    compile 'com.lzy.widget:ninegridview:0.2.1'
+    // 封装好的Fragment
+    compile 'me.yokeyword:fragmentation:0.7.12'
+    compile 'me.yokeyword:fragmentation-swipeback:0.7.9'
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    // Rx与Retrofit
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    // 封装好的RecyclerView
+    compile 'com.jude:easyrecyclerview:4.0.6'
+    // Glide加载图片
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // 自动轮播的ViewPager
+    compile 'com.jude:rollviewpager:1.4.5'
+
+    // 卡片布局
+    compile 'com.daprlabs.aaron:cardstack:0.3.1-beta0'
+    compile 'com.makeramen:roundedimageview:2.2.1'
+
+    // 节操播放器
+    compile 'fm.jiecao:jiecaovideoplayer:4.7.1_preview'
+}

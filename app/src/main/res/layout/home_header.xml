@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white_translucent"
+                android:orientation="vertical">
+
+    <com.pinger.gankit.widget.RollPagerView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:rollviewpager_play_delay="2000"/>
+
+    <RelativeLayout
+        android:id="@+id/rlGoSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/black_trans_bg"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/etSearchKey"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_search_white_24dp"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:text="一念天堂"
+            android:textColor="@color/gray_light"
+            android:textSize="14sp"
+            />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/banner"
+        android:paddingBottom="@dimen/standard_xs_small_margin"
+        android:paddingLeft="@dimen/standard_x_small_margin"
+        android:paddingTop="@dimen/standard_x_small_margin">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:background="?attr/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="热门推荐"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"/>
+    </LinearLayout>
+</RelativeLayout>

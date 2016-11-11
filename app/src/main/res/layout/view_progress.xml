@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pinger.gankit.widget.ProgressView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loadingView"
+    android:layout_width="150dp"
+    android:layout_height="80dp"
+    android:layout_gravity="center"
+    android:layout_centerInParent="true"/>

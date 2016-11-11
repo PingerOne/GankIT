@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">GankIT</string>
+    <string name="translate_up_down_behavior">com.pinger.gankit.widght.TranslateUpDownBehavior</string>
+
+
+    <!--干货顶部指示器-->
+    <!--all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App-->
+    <string-array name="ganhuo_indicator_title">
+        <item>综合</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>App</item>
+        <item>资源</item>
+        <item>前端</item>
+        <item>瞎推荐</item>
+        <item>福利</item>
+    </string-array>
+
+
+    <!--侧滑菜单-->
+    <string name="about_me">\n简 书：<a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles">敲代码的大圣</a>\n\nGithub：<a href="https://github.com/">Pinger</a></string>
+    <string name="other_about_me"><html><body><br/>简书：<a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles">敲代码的大圣</a><br/><br/>Github：<a href="https://github.com/">Pinger</a></body></html></string>
+    <string name="setting_recommend_content">发现一个超级牛逼的APP：\n\n https://github.com/PingerWan</string>
+    <string name="about">关于</string>
+    <string name="close">关闭</string>
+    <string name="cancel">取消</string>
+    <string name="done">完成</string>
+    <string name="theme">主题</string>
+    <string name="intro">简介</string>
+    <string name="comment">评论</string>
+    <string name="shrink">收起</string>
+    <string name="expand">展开</string>
+</resources>

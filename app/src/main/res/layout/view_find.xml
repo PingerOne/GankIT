@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pinger.gankit.widget.theme.ColorLinerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_nomore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="没有了，点击换下一批"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+
+
+        <com.daprlabs.cardstack.SwipeFrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:swipedeck="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/swipeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.pinger.gankit.widget.SwipeDeck
+                android:id="@+id/swipe_deck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="30dp"
+                swipedeck:card_spacing="10dp"
+                swipedeck:max_visible="3"
+                swipedeck:opacity_end="0.2"
+                swipedeck:render_above="true"
+                swipedeck:rotation_degrees="15"/>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:background="?attr/colorPrimary"
+                android:text="换一批"
+                android:textColor="@color/comm_btn_color_selector"
+                android:textSize="13sp"
+                android:visibility="gone"/>
+        </com.daprlabs.cardstack.SwipeFrameLayout>
+
+
+        <com.pinger.gankit.widget.ProgressView
+            android:id="@+id/loading"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+</com.pinger.gankit.widget.theme.ColorLinerLayout>
