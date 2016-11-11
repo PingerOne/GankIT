@@ -53,7 +53,11 @@ public abstract class GankBasePresenter extends RxPresenter implements GankConta
         getGankData(mType);
     }
 
-
+    /**
+     * 请求干货数据
+     *
+     * @param type
+     */
     private void getGankData(String type) {
         Subscription rxSubscription = RequestManager.getGankApis().getGankList(type, PAGENUM, mPage)
                 .compose(RxUtil.<GankHttpResponse<List<GankBean>>>rxSchedulerHelper())
