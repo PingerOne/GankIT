@@ -1,7 +1,5 @@
 package com.pinger.gankit.ui.activity;
 
-
-
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.ui.activity
@@ -30,7 +28,6 @@ import com.pinger.gankit.ui.fragment.gank.TuiJianFragment;
 import com.pinger.gankit.ui.fragment.gank.WebFragment;
 
 public class GankActivity extends BaseTabActivity {
-
 
     @Override
     protected void initToolBar(TextView tvName, ImageView ivIcon) {
