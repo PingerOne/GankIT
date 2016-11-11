@@ -5,7 +5,7 @@ package com.pinger.gankit.widget;
  *  @文件名:   sdfsfd
  *  @创建者:   Pinger
  *  @创建时间:  2016/11/5 1:00
- *  @描述：    TODO
+ *  @描述：    滑动从下面消失的Fab动作
  */
 
 import android.animation.Animator;
@@ -18,14 +18,14 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.Interpolator;
 
-public class FABBehavior extends CoordinatorLayout.Behavior<View> {
+public class ScrollBelowFabBehavior extends CoordinatorLayout.Behavior<View> {
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private int mDySinceDirectionChange;
     private boolean mIsShowing;
     private boolean mIsHiding;
 
-    public FABBehavior(Context context, AttributeSet attrs) {
+    public ScrollBelowFabBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

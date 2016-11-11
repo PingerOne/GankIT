@@ -21,7 +21,7 @@
         android:layout_margin="16dp"
         android:src="@mipmap/ic_github"
         app:elevation="4dp"
-        app:layout_behavior="com.pinger.gankit.widget.FABBehavior"/>
+        app:layout_behavior="com.pinger.gankit.widget.ScrollDismissFabBehavior"/>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

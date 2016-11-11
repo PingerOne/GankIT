@@ -23,7 +23,7 @@
         app:backgroundTint="@color/colorBluePrimary"
         android:src="@drawable/ic_arrow_upward_white_24dp"
         app:elevation="4dp"
-        app:layout_behavior="com.pinger.gankit.widget.FABBehavior"/>
+        app:layout_behavior="com.pinger.gankit.widget.ScrollBelowFabBehavior"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
