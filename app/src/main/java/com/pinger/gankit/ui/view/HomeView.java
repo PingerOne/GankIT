@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,8 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.jude.rollviewpager.hintview.IconHintView;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.model.bean.VideoInfo;
@@ -89,8 +92,8 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
     protected void initView() {
         mActivity = (MainActivity) mContext;
         mTitle.setVisibility(View.GONE);
-        mTitleName.setText("首页");
-        mIvHome.setImageResource(R.drawable.ic_apps_white_24dp);
+        mTitleName.setText(mActivity.getString(R.string.video_jingxuan));
+        mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(18));
         mHeaderView = LayoutInflater.from(mContext).inflate(R.layout.home_header, null);
         mBanner = ButterKnife.findById(mHeaderView, R.id.banner);
         mRlGoSearch = ButterKnife.findById(mHeaderView, R.id.rlGoSearch);
@@ -198,19 +201,25 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
             List<VideoInfo> videoInfos;
 
             for (int i = 1; i < videoRes.list.size(); i++) {
-                if (videoRes.list.get(i).title.equals("精彩推荐")) {
+                if (videoRes.list.get(i).title.equals(mContext.getString(R.string.video_jingcai))) {
                     videoInfos = videoRes.list.get(i).childList;
                     mAdapter.addAll(videoInfos);
                     break;
                 }
             }
 
+            //  劳动力少，只有父亲一人外出打共
+            //  病多，母亲体弱多病，在家休养
+            //  开销大，哥哥读大学
+
             for (int i = 1; i < videoRes.list.size(); i++) {
-                if (videoRes.list.get(i).title.equals("免费推荐")) {
+                if (videoRes.list.get(i).title.equals(mContext.getString(R.string.video_mianfei))) {
                     videos = videoRes.list.get(i).childList;
                     break;
                 }
             }
+
+
             if (mAdapter.getHeaderCount() == 0) {
                 mAdapter.addHeader(new RecyclerArrayAdapter.ItemView() {
                     @Override

@@ -5,20 +5,20 @@
         android:id="@+id/menu_home"
         android:checked="true"
         android:icon="@drawable/ic_home_white_24dp"
-        android:title="主页"/>
+        android:title="@string/video_jingxuan"/>
 
     <item
         android:id="@+id/menu_subject"
         android:icon="@drawable/ic_subject_white_24dp"
-        android:title="专题"/>
+        android:title="@string/video_zhuanti"/>
 
     <item
         android:id="@+id/menu_find"
         android:icon="@drawable/ic_find_in_page_white_24dp"
-        android:title="发现"/>
+        android:title="@string/video_faxian"/>
 
     <item
         android:id="@+id/menu_mine"
         android:icon="@drawable/ic_account_box_white_24dp"
-        android:title="我的"/>
+        android:title="@string/video_wode"/>
 </menu>

@@ -23,8 +23,12 @@ public class NewsActivity extends BaseTabActivity {
     }
 
     @Override
-    protected void setupWithTopTab(BaseTabAdapter adapter) {
-        adapter.addTopTab(NewsTotFragment.class, "国内最新", null);
+    protected int setupWithTopTab(BaseTabAdapter adapter) {
+        adapter.addTopTab(NewsTotFragment.class, "国内第一", null);
         adapter.addTopTab(NewsTotFragment.class, "国内第二", null);
+        adapter.addTopTab(NewsTotFragment.class, "国内第三", null);
+        adapter.addTopTab(NewsTotFragment.class, "国内第四", null);
+        adapter.addTopTab(NewsTotFragment.class, "国内第五", null);
+        return 5;
     }
 }

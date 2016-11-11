@@ -7,6 +7,22 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <com.pinger.gankit.widget.SwipeViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_arrow_upward_white_24dp"
+        app:elevation="4dp"
+        app:layout_behavior="com.pinger.gankit.widget.FABBehavior"/>
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/iv_icon"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:scaleType="center"/>
 
             <TextView
@@ -48,25 +64,9 @@
             app:tabIndicatorHeight="2dp"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/white_translucent_tab"
-            app:tabTextAppearance="@style/TabTitleText"
+            app:tabTextAppearance="@style/ToolBarTitleText"
             app:tabTextColor="@color/white"/>
 
     </android.support.design.widget.AppBarLayout>
-
-    <com.pinger.gankit.widget.SwipeViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_arrow_upward_white_24dp"
-        app:elevation="4dp"
-        app:layout_behavior="com.pinger.gankit.widget.FABBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

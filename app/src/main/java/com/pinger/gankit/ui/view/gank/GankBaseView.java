@@ -1,22 +1,30 @@
 package com.pinger.gankit.ui.view.gank;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
+import com.pinger.gankit.base.BaseTabActivity;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.model.bean.GankBean;
 import com.pinger.gankit.presenter.contact.GankContact;
 import com.pinger.gankit.ui.adapter.GankAdapter;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.util.List;
 
@@ -48,18 +56,36 @@ public abstract class GankBaseView extends RootView<GankContact.Presenter> imple
     @Override
     protected void getLayout() {
         inflate(mContext, R.layout.view_gank, this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void initView() {
         // 设置适配器
-//        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mAdapter = new GankAdapter(null);
-        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
-        mAdapter.isFirstOnly(true);
+        //mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        // mAdapter.isFirstOnly(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapterWithProgress(mAdapter);
         mRecyclerView.setErrorView(R.layout.view_error);
+    }
+
+
+    /**
+     * 接收消息
+     *
+     * @param fab
+     */
+    @Subscriber(tag = BaseTabActivity.TAB_FAB)
+    public void initFab(FloatingActionButton fab) {
+        fab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_open_in_browser).sizeDp(24));
+        fab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "点击了FAB", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
