@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
-import com.pinger.gankit.R;
 import com.pinger.gankit.widget.theme.Theme;
 
 import static com.pinger.gankit.utils.SPUtil.getString;
@@ -24,7 +23,7 @@ import static com.pinger.gankit.utils.SPUtil.putString;
 public class ThemeUtil {
 
     /**
-     * 设置文字的Icon
+     * 设置控件的Icon
      *
      * @param mContext
      * @param view
@@ -39,23 +38,6 @@ public class ThemeUtil {
                         .sizeDp(size),
                 null, null, null);
         view.setCompoundDrawablePadding(ScreenUtil.dip2px(mContext, padding));
-    }
-
-
-    /**
-     * 设置文字Icon
-     *
-     * @param mContext
-     * @param view
-     * @param icon
-     */
-    public static void setIconDrawable(Context mContext, TextView view, IIcon icon) {
-        view.setCompoundDrawablesWithIntrinsicBounds(new IconicsDrawable(mContext)
-                        .icon(icon)
-                        .color(getThemeColor(mContext, R.attr.colorPrimary))
-                        .sizeDp(14),
-                null, null, null);
-        view.setCompoundDrawablePadding(ScreenUtil.dip2px(mContext, 5));
     }
 
 

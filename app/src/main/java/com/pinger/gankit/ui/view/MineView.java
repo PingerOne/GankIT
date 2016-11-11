@@ -49,7 +49,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MineView extends RootView<MineContact.Presenter> implements MineContact.View, View.OnClickListener {
 
 
-
+    @BindView(R.id.collapsing_toolbar_layout)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout mAppBarLayout;
+    @BindView(R.id.head_layout)
+    RelativeLayout mRelativeLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.iv_user_avatar)
     CircleImageView mIvUserAvatar;
     @BindView(R.id.tv_user_name)
@@ -86,13 +93,28 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
     protected void initView() {
         mActivity = (MainActivity) mContext;
         initTentcentSDK();
+        mActivity.setSupportActionBar(mToolbar);
 
-
+        mActivity.getSupportActionBar().setIcon(R.drawable.ic_account_box_white_24dp);
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset <= -mRelativeLayout.getHeight() / 2) {
+                    if (mNickname != null) {
+                        mCollapsingToolbarLayout.setTitle(mNickname);
+                    } else {
+                        mCollapsingToolbarLayout.setTitle("GankIT");
+                    }
+                } else {
+                    mCollapsingToolbarLayout.setTitle(" ");
+                }
+            }
+        });
         EventBus.getDefault().register(this);
 
         if (!SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
             mIvUserAvatar.setImageResource(R.mipmap.user_unknow);
-            mTvUserName.setText(mContext.getString(R.string.for_login));
+            mTvUserName.setText("请先登录");
             return;
         }
 
@@ -127,10 +149,10 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
         switch (view.getId()) {
             case R.id.iv_user_avatar:
                 if (SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
-                    Toast.makeText(mActivity, mContext.getString(R.string.logined), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, "您已经登录了", Toast.LENGTH_SHORT).show();
                 } else {
                     // 跳转到QQ登录
-                    mTencent.login(mActivity, mContext.getString(R.string.all), mActivity);
+                    mTencent.login(mActivity, "all", mActivity);
                 }
                 break;
         }

@@ -67,12 +67,6 @@
                 android:text="新闻"/>
 
             <TextView
-                android:id="@+id/tv_fuli"
-                style="@style/MenuStyle"
-                android:text="福利"/>
-
-
-            <TextView
                 android:id="@+id/tv_about"
                 style="@style/MenuStyle"
                 android:text="关于"/>

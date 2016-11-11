@@ -23,7 +23,6 @@ import com.pinger.gankit.app.Constant;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.presenter.contact.MainContact;
-import com.pinger.gankit.ui.activity.FuliActivity;
 import com.pinger.gankit.ui.activity.GankActivity;
 import com.pinger.gankit.ui.activity.MainActivity;
 import com.pinger.gankit.ui.activity.NewsActivity;
@@ -69,7 +68,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
     private TextView mTvVideo;
     private TextView mTvAbout;
     private TextView mTvExit;
-    private TextView mTvFuli;
     @BindView(R.id.usViewPager)
     UnScrollViewPager mUsViewPager;
     @BindView(R.id.bottomNavigationView)
@@ -111,7 +109,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         mTvTheme = (TextView) leftMenuView.findViewById(R.id.tv_theme);
         mTvSetting = (TextView) leftMenuView.findViewById(R.id.tv_setting);
         mTvExit = (TextView) leftMenuView.findViewById(R.id.tv_exit);
-        mTvFuli = (TextView) leftMenuView.findViewById(R.id.tv_fuli);
 
         // 设置ViewPager，填充Fragment
         List<Fragment> mData = getFragments();
@@ -129,12 +126,11 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         ThemeUtil.setIconDrawable(mContext, mTvSetting, MaterialDesignIconic.Icon.gmi_settings, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvTheme, MaterialDesignIconic.Icon.gmi_palette, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvExit, MaterialDesignIconic.Icon.gmi_fullscreen_exit, 16, 10);
-        ThemeUtil.setIconDrawable(mContext, mTvFuli, MaterialDesignIconic.Icon.gmi_gif, 16, 10);
 
 
         if (!SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
             mIvAvatar.setImageResource(R.mipmap.user_unknow);
-            mTvDesc.setText(mContext.getString(R.string.please_login));
+            mTvDesc.setText("请先登录");
             return;
         }
 
@@ -155,7 +151,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         mTvTheme.setOnClickListener(this);
         mTvSetting.setOnClickListener(this);
         mTvExit.setOnClickListener(this);
-        mTvFuli.setOnClickListener(this);
 
         mResideMenu.setMenuListener(new ResideMenu.OnMenuListener() {
             @Override
@@ -235,10 +230,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
             case R.id.tv_news:
                 // 跳转到新闻页面
                 JumpUtil.jumpActivity(mContext, NewsActivity.class);
-                break;
-            case R.id.tv_fuli:
-                // 跳转到福利页面
-                JumpUtil.jumpActivity(mContext, FuliActivity.class);
                 break;
             case R.id.tv_about:
                 new MaterialDialog.Builder(mActivity)

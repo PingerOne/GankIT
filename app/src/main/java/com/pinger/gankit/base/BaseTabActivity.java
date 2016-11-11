@@ -10,8 +10,6 @@ import com.pinger.gankit.R;
 import com.pinger.gankit.ui.adapter.BaseTabAdapter;
 import com.pinger.gankit.widget.SwipeViewPager;
 
-import org.simple.eventbus.EventBus;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,7 +24,6 @@ import butterknife.ButterKnife;
 
 public abstract class BaseTabActivity extends SwipeBackActivity {
 
-    public static final String TAB_FAB = "tab_fab";
     @BindView(R.id.iv_icon)
     ImageView mIvIcon;
     @BindView(R.id.tv_name)
@@ -58,13 +55,7 @@ public abstract class BaseTabActivity extends SwipeBackActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
         // 设置数据
-        int count = setupWithTopTab(mAdapter);
-        // 优化加载
-        mViewPager.setOffscreenPageLimit(count);
-        mAdapter.notifyDataSetChanged();
-
-        // 将Fab发送出去，让子类去实现点击事件
-        EventBus.getDefault().post(mFab,TAB_FAB);
+        setupWithTopTab(mAdapter);
     }
 
     /**
@@ -75,5 +66,5 @@ public abstract class BaseTabActivity extends SwipeBackActivity {
      */
     protected abstract void initToolBar(TextView tvName, ImageView ivIcon);
 
-    protected abstract int setupWithTopTab(BaseTabAdapter adapter);
+    protected abstract void setupWithTopTab(BaseTabAdapter adapter);
 }

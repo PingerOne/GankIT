@@ -13,6 +13,7 @@
         <item>资源</item>
         <item>前端</item>
         <item>瞎推荐</item>
+        <item>福利</item>
     </string-array>
 
 
@@ -20,7 +21,6 @@
     <string name="about_me">\n简 书：<a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles">敲代码的大圣</a>\n\nGithub：<a href="https://github.com/">Pinger</a></string>
     <string name="other_about_me"><html><body><br/>简书：<a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles">敲代码的大圣</a><br/><br/>Github：<a href="https://github.com/">Pinger</a></body></html></string>
     <string name="setting_recommend_content">发现一个超级牛逼的APP：\n\n https://github.com/PingerWan</string>
-    <string name="project_name">GankIT</string>
     <string name="about">关于</string>
     <string name="close">关闭</string>
     <string name="cancel">取消</string>
@@ -30,20 +30,4 @@
     <string name="comment">评论</string>
     <string name="shrink">收起</string>
     <string name="expand">展开</string>
-
-    <!--视频模块-->
-    <string name="video_jingcai">精彩推荐</string>
-    <string name="video_mianfei">免费推荐</string>
-    <string name="video_jingxuan">精选</string>
-    <string name="video_zhuanti">专题</string>
-    <string name="video_faxian">发现</string>
-    <string name="video_wode">我的</string>
-
-
-    <!--登录-->
-    <string name="for_login">请先登录</string>
-    <string name="logined">您已经登录了</string>
-    <string name="all">all</string>
-    <string name="please_login">请先登录</string>
-    <string name="fuli">福利</string>
 </resources>

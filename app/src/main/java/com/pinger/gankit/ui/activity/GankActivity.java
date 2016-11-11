@@ -11,12 +11,9 @@ package com.pinger.gankit.ui.activity;
  *  @描述：    干货
  */
 
-import android.graphics.Color;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseTabActivity;
 import com.pinger.gankit.ui.adapter.BaseTabAdapter;
@@ -35,11 +32,11 @@ public class GankActivity extends BaseTabActivity {
     @Override
     protected void initToolBar(TextView tvName, ImageView ivIcon) {
         tvName.setText("干货");
-        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(20));
+        ivIcon.setImageResource(R.drawable.ic_android_white_18dp);
     }
 
     @Override
-    protected int setupWithTopTab(BaseTabAdapter adapter) {
+    protected void setupWithTopTab(BaseTabAdapter adapter) {
         adapter.addTopTab(AllFragment.class, getTitle(0), null);
         adapter.addTopTab(AndroidFragment.class, getTitle(1), null);
         adapter.addTopTab(IOSFragment.class, getTitle(2), null);
@@ -47,7 +44,7 @@ public class GankActivity extends BaseTabActivity {
         adapter.addTopTab(ResourceFragment.class, getTitle(4), null);
         adapter.addTopTab(WebFragment.class, getTitle(5), null);
         adapter.addTopTab(TuiJianFragment.class, getTitle(6), null);
-       return getResources().getStringArray(R.array.ganhuo_indicator_title).length;
+        adapter.addTopTab(FuliFragment.class, getTitle(7), null);
     }
 
 
