@@ -16,7 +16,7 @@
 * 使用Icon Font处理项目中大部分图标
 * 使用Lambda表达式精选代码
 * 使用EventBus实现组件之间的通信
-* 使用EasyRecyclerView处理数据条目
+* 使用EasyRecyclerView处理数据的展示
 * 使用CardStack实现发现页面的绚丽卡片栈
 * 使用Fiddler抓包咪咕影院数据，干货和福利数据来自与gank.io，新闻数据来自于易源
 
@@ -76,7 +76,10 @@
 * 研究Lambda表达式在android中的使用情况
 * 使用Lambda表达式对大部分代码进行了重构，简化了代码逻辑
 * 封装福利页面的API接口
-*
+* 加载福利页面的数据，使用RecyclerView的瀑布流布局和CardView条目展示
+* 福利页面条目点击进入图片阅览
+* 添加保存本地和分享功能
+* 对代码进行了优化
 
 
 ## 遇到的难题
@@ -93,7 +96,7 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 * 在侧滑菜单中切换主题后，Fragment中的控件不能切换主题
 > 问题描述：在MainActivity中切换主题后，在Fragment中并没有切换主题的代码，所以需要将修改主题的代码放置在BaseFragment中，然后在MainActivity发送切换主题的消息，BaseFragment收到消息后就切换主题
 
-* 抽取干货基类时，上拉加载更多出现空指针，View层的加载更多方法会调用Presenter层的加载数据方法，但是Presneter层还没有走完绑定View的代码，对象是个空的，所以出现了错误
+* 抽取干货基类时，上拉加载更多出现空指针，View层的加载更多方法会调用Presenter层的加载数据方法，但是Presenter层还没有走完绑定View的代码，对象是个空的，所以出现了错误
 
 
 

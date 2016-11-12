@@ -48,4 +48,6 @@
     <string name="fuli">福利</string>
     <string name="action_share">分享</string>
     <string name="action_save">保存</string>
+    <string name="share_to">分享GankIT到...</string>
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
 </resources>
