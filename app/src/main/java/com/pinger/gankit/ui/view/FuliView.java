@@ -102,15 +102,15 @@ public class FuliView extends RootView<FuliContact.Presenter> implements FuliCon
 
     @Override
     public void showContent(List<GankBean> gankBeanList) {
+        mAdapter.clear();
+        if (gankBeanList != null && gankBeanList.size() < FuliPresenter.PAGENUM) {
+            clearFooter();
+        }
         mAdapter.addAll(gankBeanList);
     }
 
     @Override
     public void showMoreContent(List<GankBean> gankBeanMoreList) {
-        mAdapter.clear();
-        if (gankBeanMoreList != null && gankBeanMoreList.size() < FuliPresenter.PAGENUM) {
-            clearFooter();
-        }
         mAdapter.addAll(gankBeanMoreList);
     }
 

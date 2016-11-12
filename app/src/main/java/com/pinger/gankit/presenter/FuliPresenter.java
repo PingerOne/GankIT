@@ -93,7 +93,7 @@ public class FuliPresenter extends RxPresenter implements FuliContact.Presenter 
         int width = dm.widthPixels / 2;
         for (GankBean gankBean : list) {
             //随机的高度
-            gankBean.setHeight(width * StringUtil.getRandomNumber(3, 6) / 3);
+            gankBean.setHeight(width * StringUtil.getRandomNumber(3, 5) / 3);
         }
     }
 }

@@ -61,6 +61,9 @@
         <activity
             android:name=".ui.activity.FuliActivity"
             android:theme="@style/CustomTransparent"/>
+        <activity
+            android:name=".ui.activity.PhotoActivity"
+            android:theme="@style/CustomTransparent"/>
 
 
         <!-- QQLogin Start 简单集成-->
