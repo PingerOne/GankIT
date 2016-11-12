@@ -64,10 +64,8 @@ public class FuliPresenter extends RxPresenter implements FuliContact.Presenter 
                             // 设置随机高度
                             setHeight(gankBeanList);
                             if (mPage == 1) {
-                                Log.d("FuliPresenter", "拿到刷新数据");
                                 mFuliView.showContent(gankBeanList);
                             } else {
-                                Log.d("FuliPresenter", "拿到加载更多数据");
                                 mFuliView.showMoreContent(gankBeanList);
                             }
                         }

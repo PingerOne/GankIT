@@ -88,7 +88,7 @@ public class FuliView extends RootView<FuliContact.Presenter> implements FuliCon
         // 设置条目点击事件
         mAdapter.setOnItemClickListener(position -> {
             GankBean gankBean = mAdapter.getAllData().get(position);
-            Intent intent = new Intent();
+            Intent intent = new Intent(mContext,PhotoActivity.class);
             intent.putExtra(PhotoActivity.IMAGE_TITLE, gankBean.getDesc());
             intent.putExtra(PhotoActivity.IMAGE_URL, gankBean.getUrl());
             mContext.startActivity(intent);
