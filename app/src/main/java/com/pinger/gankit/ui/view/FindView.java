@@ -142,14 +142,11 @@ public class FindView extends RootView<FindContact.Presenter> implements FindCon
             }
         });
 
-        mIvIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mResideMenu.isOpened()) {
-                    mResideMenu.closeMenu();
-                } else {
-                    mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
-                }
+        mIvIcon.setOnClickListener(view -> {
+            if (mResideMenu.isOpened()) {
+                mResideMenu.closeMenu();
+            } else {
+                mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
         });
 

@@ -4,15 +4,12 @@ import android.support.test.espresso.core.deps.guava.base.Preconditions;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
-import com.pinger.gankit.model.bean.VideoRes;
-import com.pinger.gankit.model.net.VideoHttpResponse;
 import com.pinger.gankit.presenter.contact.SubjectContact;
 import com.pinger.gankit.ui.view.SubjectView;
 import com.pinger.gankit.utils.RxUtil;
 import com.pinger.gankit.utils.StringUtil;
 
 import rx.Subscription;
-import rx.functions.Action1;
 
 /*
  *  @项目名：  GankIT 
@@ -27,8 +24,6 @@ public class SubjectPresenter extends RxPresenter implements SubjectContact.Pres
 
     private final SubjectView mSubjectView;
 
-    private int page;
-
     public SubjectPresenter(SubjectView subjectView) {
         mSubjectView = Preconditions.checkNotNull(subjectView);
         // 关联
@@ -37,7 +32,6 @@ public class SubjectPresenter extends RxPresenter implements SubjectContact.Pres
 
     @Override
     public void onRefresh() {
-        page = 0;
         requestData();
     }
 
@@ -46,22 +40,16 @@ public class SubjectPresenter extends RxPresenter implements SubjectContact.Pres
      */
     private void requestData() {
         Subscription rxSubscription = RequestManager.getVideoApi().getHomePage()
-                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-                .compose(RxUtil.<VideoRes>handleResult())
-                .subscribe(new Action1<VideoRes>() {
-                    @Override
-                    public void call(final VideoRes res) {
-                        if (res != null) {
-                            if (mSubjectView.isActive()) {
-                                mSubjectView.showContent(res);
-                            }
+                .compose(RxUtil.rxSchedulerHelper())
+                .compose(RxUtil.handleResult())
+                .subscribe(res -> {
+                    if (res != null) {
+                        if (mSubjectView.isActive()) {
+                            mSubjectView.showContent(res);
                         }
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        mSubjectView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
-                    }
+                }, throwable -> {
+                    mSubjectView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
                 });
         addSubscribe(rxSubscription);
     }

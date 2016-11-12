@@ -47,8 +47,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     // 3D侧滑
     compile 'com.specyci:residemenu:1.6+'
-    // okgo 网络请求
-    compile 'com.lzy.net:okgo:2.0.0'
+
     // 圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
     // fonts icon 字体图标

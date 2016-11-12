@@ -57,7 +57,6 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
     ImageView mIvIcon;
     @BindView(R.id.tv_name)
     TextView mTvName;
-    private VideoRes mVideoRes;
     private List<Fragment> mFragments;
     private String[] mTitles;
 
@@ -107,7 +106,6 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
 
     @Override
     public void showContent(VideoRes videoRes) {
-        this.mVideoRes = videoRes;
         mTvName.setText(videoRes.title);
 
         // 根据资源播放视频

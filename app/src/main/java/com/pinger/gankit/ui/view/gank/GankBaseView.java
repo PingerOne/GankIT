@@ -8,8 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -79,24 +77,16 @@ public abstract class GankBaseView extends RootView<GankContact.Presenter> imple
     @Subscriber(tag = BaseTabActivity.TAB_FAB)
     public void initFab(FloatingActionButton fab) {
         fab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_open_in_browser).sizeDp(24));
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "点击了FAB", Toast.LENGTH_SHORT).show();
-            }
-        });
+        fab.setOnClickListener(view -> Toast.makeText(mContext, "点击了FAB", Toast.LENGTH_SHORT).show());
 
     }
 
     @Override
     protected void initEvent() {
         // 错误视图的点击事件处理
-        mRecyclerView.getErrorView().setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecyclerView.showProgress();
-                onRefresh();
-            }
+        mRecyclerView.getErrorView().setOnClickListener(view -> {
+            mRecyclerView.showProgress();
+            onRefresh();
         });
 
         // 上拉刷新，下拉加载更多监听

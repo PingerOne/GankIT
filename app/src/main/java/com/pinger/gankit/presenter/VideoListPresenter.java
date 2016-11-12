@@ -4,14 +4,11 @@ import android.support.test.espresso.core.deps.guava.base.Preconditions;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
-import com.pinger.gankit.model.bean.VideoRes;
-import com.pinger.gankit.model.net.VideoHttpResponse;
 import com.pinger.gankit.presenter.contact.VideoListContact;
 import com.pinger.gankit.utils.RxUtil;
 import com.pinger.gankit.utils.StringUtil;
 
 import rx.Subscription;
-import rx.functions.Action1;
 
 
 /*
@@ -58,29 +55,23 @@ public class VideoListPresenter extends RxPresenter implements VideoListContact.
      */
     private void getVideoList(String categoryId) {
         Subscription rxSubscription = RequestManager.getVideoApi().getVideoList(categoryId, mPage + "")
-                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-                .compose(RxUtil.<VideoRes>handleResult())
-                .subscribe(new Action1<VideoRes>() {
-                    @Override
-                    public void call(VideoRes res) {
-                        if (res != null) {
-                            if (mView.isActive()) {
-                                if (mPage == 1) {
-                                    mView.showContent(res.list);
-                                } else {
-                                    mView.showMoreContent(res.list);
-                                }
+                .compose(RxUtil.rxSchedulerHelper())
+                .compose(RxUtil.handleResult())
+                .subscribe(res -> {
+                    if (res != null) {
+                        if (mView.isActive()) {
+                            if (mPage == 1) {
+                                mView.showContent(res.list);
+                            } else {
+                                mView.showMoreContent(res.list);
                             }
                         }
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if (mPage > 1) {
-                            mPage--;
-                        }
-                        mView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
+                }, throwable -> {
+                    if (mPage > 1) {
+                        mPage--;
                     }
+                    mView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
                 });
         addSubscribe(rxSubscription);
     }

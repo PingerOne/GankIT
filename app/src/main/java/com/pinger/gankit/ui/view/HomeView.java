@@ -71,7 +71,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
     View mHeaderView;
     TextView mEtSearchKey;
     RelativeLayout mRlGoSearch;
-    private List<VideoInfo> videos;
     private MainActivity mActivity;
     private ResideMenu mResideMenu;
 
@@ -117,12 +116,7 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
     @Override
     protected void initEvent() {
         // fab点击事件，返回最上页面
-        mFab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecyclerView.scrollToPosition(0);
-            }
-        });
+        mFab.setOnClickListener(view -> mRecyclerView.scrollToPosition(0));
 
         // 设置下拉刷新
         mRecyclerView.setRefreshListener(this);
@@ -131,17 +125,14 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 if (getHeaderScrollHeight() <= ScreenUtil.dip2px(mContext, 150)) {
-                    new Handler().postAtTime(new Runnable() {
-                        @Override
-                        public void run() {
-                            float percentage = (float) getHeaderScrollHeight() / ScreenUtil.dip2px(mContext, 150);
-                            mTitle.setAlpha(percentage);
-                            if (percentage > 0)
-                                mTitle.setVisibility(View.VISIBLE);
-                            else
-                                mTitle.setVisibility(View.GONE);
+                    new Handler().postAtTime(() -> {
+                        float percentage = (float) getHeaderScrollHeight() / ScreenUtil.dip2px(mContext, 150);
+                        mTitle.setAlpha(percentage);
+                        if (percentage > 0)
+                            mTitle.setVisibility(View.VISIBLE);
+                        else
+                            mTitle.setVisibility(View.GONE);
 
-                        }
                     }, 300);
                 } else {
                     mTitle.setAlpha(1.0f);
@@ -150,40 +141,26 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
             }
         });
         // 错误视图点击事件
-        mRecyclerView.getErrorView().setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecyclerView.showProgress();
-                onRefresh();
-            }
+        mRecyclerView.getErrorView().setOnClickListener(view -> {
+            mRecyclerView.showProgress();
+            onRefresh();
         });
 
         // 设置条目点击事件
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                JumpUtil.jump2VideoDetailActivity(mContext, mAdapter.getItem(position));
-            }
-        });
+        mAdapter.setOnItemClickListener(position -> JumpUtil.jump2VideoDetailActivity(mContext, mAdapter.getItem(position)));
 
         // 设置搜索点击事件
-        mRlGoSearch.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mRlGoSearch.setOnClickListener(view -> {
 //                Intent intent = new Intent(mContext, SearchActivity.class);
 //                intent.putExtra("videoInfos", (Serializable) videos);
 //                mContext.startActivity(intent);
-                Toast.makeText(mContext, "正在努力开发中...", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(mContext, "正在努力开发中...", Toast.LENGTH_SHORT).show();
         });
-        mIvHome.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mResideMenu.isOpened()) {
-                    mResideMenu.closeMenu();
-                } else {
-                    mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
-                }
+        mIvHome.setOnClickListener(view -> {
+            if (mResideMenu.isOpened()) {
+                mResideMenu.closeMenu();
+            } else {
+                mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
         });
     }
@@ -207,18 +184,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
                     break;
                 }
             }
-
-            //  劳动力少，只有父亲一人外出打共
-            //  病多，母亲体弱多病，在家休养
-            //  开销大，哥哥读大学
-
-            for (int i = 1; i < videoRes.list.size(); i++) {
-                if (videoRes.list.get(i).title.equals(mContext.getString(R.string.video_mianfei))) {
-                    videos = videoRes.list.get(i).childList;
-                    break;
-                }
-            }
-
 
             if (mAdapter.getHeaderCount() == 0) {
                 mAdapter.addHeader(new RecyclerArrayAdapter.ItemView() {

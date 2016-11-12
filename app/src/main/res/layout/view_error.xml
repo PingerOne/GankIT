@@ -2,17 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#55FF0000">
+
+                android:background="@color/white">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="?attr/colorPrimary"
-        android:elevation="5dp"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:text="加载的是什么东西？奔溃！！"/>
+        android:text="加载出错啦，请重新试一试哦..."/>
 
 </RelativeLayout>

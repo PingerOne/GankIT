@@ -1,14 +1,10 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +43,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class MineView extends RootView<MineContact.Presenter> implements MineContact.View, View.OnClickListener {
-
 
 
     @BindView(R.id.iv_user_avatar)

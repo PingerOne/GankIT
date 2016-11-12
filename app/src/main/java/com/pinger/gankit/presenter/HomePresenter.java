@@ -5,8 +5,6 @@ import android.support.test.espresso.core.deps.guava.base.Preconditions;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
-import com.pinger.gankit.model.bean.VideoRes;
-import com.pinger.gankit.model.net.VideoHttpResponse;
 import com.pinger.gankit.presenter.contact.HomeContact;
 import com.pinger.gankit.ui.view.MainView;
 import com.pinger.gankit.utils.RxUtil;
@@ -16,7 +14,6 @@ import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
 import rx.Subscription;
-import rx.functions.Action1;
 
 /*
  *  @项目名：  GankIT 
@@ -50,22 +47,16 @@ public class HomePresenter extends RxPresenter implements HomeContact.Presenter 
 
     public void getPageHomeInfo() {
         Subscription rxSubscription = RequestManager.getVideoApi().getHomePage()
-                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-                .compose(RxUtil.<VideoRes>handleResult())
-                .subscribe(new Action1<VideoRes>() {
-                    @Override
-                    public void call(final VideoRes res) {
-                        if (res != null) {
-                            if (mView.isActive()) {
-                                mView.showContent(res);
-                            }
+                .compose(RxUtil.rxSchedulerHelper())
+                .compose(RxUtil.handleResult())
+                .subscribe(res -> {
+                    if (res != null) {
+                        if (mView.isActive()) {
+                            mView.showContent(res);
                         }
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        mView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
-                    }
+                }, throwable -> {
+                    mView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
                 });
         addSubscribe(rxSubscription);
     }

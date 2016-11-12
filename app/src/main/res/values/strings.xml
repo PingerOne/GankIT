@@ -46,4 +46,6 @@
     <string name="all">all</string>
     <string name="please_login">请先登录</string>
     <string name="fuli">福利</string>
+    <string name="action_share">分享</string>
+    <string name="action_save">保存</string>
 </resources>

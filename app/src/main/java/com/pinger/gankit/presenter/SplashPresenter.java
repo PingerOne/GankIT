@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Action1;
 
 public class SplashPresenter extends RxPresenter implements SplashContact.Presenter {
 
@@ -47,12 +46,9 @@ public class SplashPresenter extends RxPresenter implements SplashContact.Presen
 
     private void startMainActivity() {
         Subscription rxSubscription = Observable.timer(DEFAULT_DELAY, TimeUnit.MILLISECONDS)
-                .compose(RxUtil.<Long>rxSchedulerHelper())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        mSplashView.jump2Main();
-                    }
+                .compose(RxUtil.rxSchedulerHelper())
+                .subscribe(aLong -> {
+                    mSplashView.jump2Main();
                 });
         addSubscribe(rxSubscription);
     }

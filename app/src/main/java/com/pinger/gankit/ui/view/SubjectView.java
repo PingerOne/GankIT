@@ -8,13 +8,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
-import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
@@ -137,32 +135,23 @@ public class SubjectView extends RootView<SubjectContact.Presenter> implements S
         mEasyRecyclerView.setRefreshListener(this);
 
         // 错误视图监听
-        mEasyRecyclerView.getErrorView().setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mEasyRecyclerView.showProgress();
-                onRefresh();
-            }
+        mEasyRecyclerView.getErrorView().setOnClickListener(view -> {
+            mEasyRecyclerView.showProgress();
+            onRefresh();
         });
 
         // 条目监听
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // 跳转到视频列表
-                JumpUtil.jump2VideoListActivity(mContext, StringUtil.getCatalogId(mAdapter.getItem(position).moreURL),
-                        mAdapter.getItem(position).title);
-            }
+        mAdapter.setOnItemClickListener(position -> {
+            // 跳转到视频列表
+            JumpUtil.jump2VideoListActivity(mContext, StringUtil.getCatalogId(mAdapter.getItem(position).moreURL),
+                    mAdapter.getItem(position).title);
         });
 
-        mIvIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mResideMenu.isOpened()) {
-                    mResideMenu.closeMenu();
-                } else {
-                    mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
-                }
+        mIvIcon.setOnClickListener(view -> {
+            if (mResideMenu.isOpened()) {
+                mResideMenu.closeMenu();
+            } else {
+                mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
         });
     }

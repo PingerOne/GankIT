@@ -99,6 +99,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         mResideMenu = new ResideMenu(mActivity, R.layout.menu_left, R.layout.menu_right);
         mResideMenu.attachToActivity(mActivity);
         mResideMenu.setScaleValue(0.5f);
+        mResideMenu.setUse3D(true);
 
         View leftMenuView = mResideMenu.getLeftMenuView();
         mIvAvatar = (CircleImageView) leftMenuView.findViewById(R.id.iv_avatar);
@@ -187,12 +188,9 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
     }
 
     private void postBannerState(final boolean stop) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // 延时发送通知
-                EventBus.getDefault().post(stop, Banner_Stop);
-            }
+        new Handler().postDelayed(() -> {
+            // 延时发送通知
+            EventBus.getDefault().post(stop, Banner_Stop);
         }, WAIT_TIME);
     }
 

@@ -95,44 +95,23 @@ public class VideoListView extends RootView<VideoListContact.Presenter> implemen
 
     @Override
     protected void initEvent() {
-        mFab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecyclerView.scrollToPosition(0);
-            }
-        });
+        mFab.setOnClickListener(view -> mRecyclerView.scrollToPosition(0));
 
-        mIvIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mActivity.finish();
-            }
-        });
+        mIvIcon.setOnClickListener(view -> mActivity.finish());
         mRecyclerView.setRefreshListener(this);
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // 将VideoType转换成VideoInfo
-                videoInfo = BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position), videoInfo);
-                JumpUtil.jump2VideoDetailActivity(getContext(), videoInfo);
-            }
+        mAdapter.setOnItemClickListener(position -> {
+            // 将VideoType转换成VideoInfo
+            videoInfo = BeanUtil.VideoType2VideoInfo(mAdapter.getItem(position), videoInfo);
+            JumpUtil.jump2VideoDetailActivity(getContext(), videoInfo);
         });
 
         // 更多的错误处理
-        mAdapter.setError(R.layout.view_error_footer).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAdapter.resumeMore();
-            }
-        });
+        mAdapter.setError(R.layout.view_error_footer).setOnClickListener(v -> mAdapter.resumeMore());
 
         // 错误视图的点击事件处理
-        mRecyclerView.getErrorView().setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRecyclerView.showProgress();
-                onRefresh();
-            }
+        mRecyclerView.getErrorView().setOnClickListener(v -> {
+            mRecyclerView.showProgress();
+            onRefresh();
         });
     }
 

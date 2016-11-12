@@ -1,19 +1,29 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.model.bean.GankBean;
+import com.pinger.gankit.presenter.FuliPresenter;
 import com.pinger.gankit.presenter.contact.FuliContact;
+import com.pinger.gankit.ui.activity.PhotoActivity;
+import com.pinger.gankit.ui.adapter.FuliAdapter;
 
 import java.util.List;
 
@@ -26,15 +36,18 @@ import butterknife.BindView;
  *  @文件名:   FuliView
  *  @创建者:   Pinger
  *  @创建时间:  2016/11/12 0:05
- *  @描述：    TODO
+ *  @描述：    福利View层
  */
 
-public class FuliView extends RootView implements FuliContact.View {
+public class FuliView extends RootView<FuliContact.Presenter> implements FuliContact.View, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.iv_icon)
     ImageView mIvIcon;
     @BindView(R.id.tv_name)
     TextView mTvName;
+    @BindView(R.id.recyclerView)
+    EasyRecyclerView mRecyclerView;
+    private FuliAdapter mAdapter;
 
     public FuliView(Context context) {
         this(context, null);
@@ -54,14 +67,32 @@ public class FuliView extends RootView implements FuliContact.View {
         mTvName.setText(mContext.getString(R.string.fuli));
         mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_gif).sizeDp(20));
 
-
-
-
+        // 设置适配器
+        mAdapter = new FuliAdapter(mContext);
+        mRecyclerView.setAdapterWithProgress(mAdapter);
+        mRecyclerView.setErrorView(R.layout.view_error);
+        mAdapter.setMore(R.layout.view_more, this);
+        mAdapter.setNoMore(R.layout.view_nomore);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
     @Override
     protected void initEvent() {
+        mRecyclerView.setRefreshListener(this);
+        mAdapter.setError(R.layout.view_error_footer).setOnClickListener(view -> mAdapter.resumeMore());
+        mRecyclerView.getErrorView().setOnClickListener(view -> {
+            mRecyclerView.showProgress();
+            onRefresh();
+        });
 
+        // 设置条目点击事件
+        mAdapter.setOnItemClickListener(position -> {
+            GankBean gankBean = mAdapter.getAllData().get(position);
+            Intent intent = new Intent();
+            intent.putExtra(PhotoActivity.IMAGE_TITLE, gankBean.getDesc());
+            intent.putExtra(PhotoActivity.IMAGE_URL, gankBean.getUrl());
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
@@ -71,12 +102,25 @@ public class FuliView extends RootView implements FuliContact.View {
 
     @Override
     public void showContent(List<GankBean> gankBeanList) {
-
+        mAdapter.addAll(gankBeanList);
     }
 
     @Override
     public void showMoreContent(List<GankBean> gankBeanMoreList) {
+        mAdapter.clear();
+        if (gankBeanMoreList != null && gankBeanMoreList.size() < FuliPresenter.PAGENUM) {
+            clearFooter();
+        }
+        mAdapter.addAll(gankBeanMoreList);
+    }
 
+    /**
+     * 清空布局
+     */
+    private void clearFooter() {
+        mAdapter.setMore(new View(mContext), this);
+        mAdapter.setError(new View(mContext));
+        mAdapter.setNoMore(new View(mContext));
     }
 
     @Override
@@ -86,16 +130,32 @@ public class FuliView extends RootView implements FuliContact.View {
 
     @Override
     public void showError(String msg) {
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        Snackbar.make(mRecyclerView, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void refreshFailed(String msg) {
-
+        if (!TextUtils.isEmpty(msg)) {
+            showError(msg);
+        }
+        mRecyclerView.showError();
     }
 
     @Override
     public void loadMoreFailed(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            showError(msg);
+        }
+        mAdapter.pauseMore();
+    }
 
+    @Override
+    public void onRefresh() {
+        mPresenter.onRefresh();
+    }
+
+    @Override
+    public void onLoadMore() {
+        mPresenter.loadMore();
     }
 }

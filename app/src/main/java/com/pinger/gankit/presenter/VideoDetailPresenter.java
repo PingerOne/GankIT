@@ -10,7 +10,6 @@ import com.pinger.gankit.model.bean.Record;
 import com.pinger.gankit.model.bean.VideoInfo;
 import com.pinger.gankit.model.bean.VideoRes;
 import com.pinger.gankit.model.db.RealmHelper;
-import com.pinger.gankit.model.net.VideoHttpResponse;
 import com.pinger.gankit.presenter.contact.VideoDetailContact;
 import com.pinger.gankit.utils.BeanUtil;
 import com.pinger.gankit.utils.RxUtil;
@@ -21,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Action0;
 import rx.functions.Action1;
 
 /*
@@ -61,33 +59,24 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
     @Override
     public void requestDetailData(String dataId) {
         Subscription rxSubscription = RequestManager.getVideoApi().getVideoInfo(dataId)
-                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-                .compose(RxUtil.<VideoRes>handleResult())
-                .subscribe(new Action1<VideoRes>() {
-                    @Override
-                    public void call(final VideoRes res) {
-                        if (res != null) {
-                            if (mView.isActive()) {
-                                mView.showContent(res);
-                                result = res;
-                                postData();
-                                insertRecord();
-                            }
+                .compose(RxUtil.rxSchedulerHelper())
+                .compose(RxUtil.handleResult())
+                .subscribe(res -> {
+                    if (res != null) {
+                        if (mView.isActive()) {
+                            mView.showContent(res);
+                            result = res;
+                            postData();
+                            insertRecord();
                         }
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if (mView.isActive())
-                            mView.hideLoading();
-                        mView.showError("数据加载失败");
-                    }
-                }, new Action0() {
-                    @Override
-                    public void call() {
-                        if (mView.isActive())
-                            mView.hideLoading();
-                    }
+                }, throwable -> {
+                    if (mView.isActive())
+                        mView.hideLoading();
+                    mView.showError("数据加载失败");
+                }, () -> {
+                    if (mView.isActive())
+                        mView.hideLoading();
                 });
         addSubscribe(rxSubscription);
     }
