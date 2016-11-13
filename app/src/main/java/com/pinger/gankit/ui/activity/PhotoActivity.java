@@ -50,7 +50,7 @@ public class PhotoActivity extends SwipeBackActivity {
     AppBarLayout mAppbar;
     private String mImageTitle, mImageUrl;
     private boolean isShow = false;
-    private int mToolbarWidth;
+    private int mAppBarWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +71,9 @@ public class PhotoActivity extends SwipeBackActivity {
         // 设置图片点击事件
         mPicture.setOnClickListener(view -> {
             if (isShow) {
-                ViewCompat.animate(mAppbar).setDuration(1200).translationY(0);
+                ViewCompat.animate(mAppbar).setDuration(500).translationY(0);
             } else {
-                ViewCompat.animate(mAppbar).setDuration(1200).translationY(-mToolbarWidth);
+                ViewCompat.animate(mAppbar).setDuration(1000).translationY(-mAppBarWidth);
             }
             isShow = !isShow;
         });
@@ -82,14 +82,13 @@ public class PhotoActivity extends SwipeBackActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        mToolbarWidth = mToolbar.getWidth();
+        mAppBarWidth = mAppbar.getWidth();
     }
 
     private void parseIntent() {
         mImageTitle = getIntent().getStringExtra(IMAGE_TITLE);
         mImageUrl = getIntent().getStringExtra(IMAGE_URL);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

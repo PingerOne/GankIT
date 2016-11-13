@@ -35,6 +35,7 @@ import com.pinger.gankit.ui.adapter.BannerAdapter;
 import com.pinger.gankit.ui.adapter.HomedAdapter;
 import com.pinger.gankit.utils.JumpUtil;
 import com.pinger.gankit.utils.ScreenUtil;
+import com.pinger.gankit.utils.ThemeUtil;
 import com.pinger.gankit.widget.ResideMenu;
 import com.pinger.gankit.widget.RollPagerView;
 import com.pinger.gankit.widget.theme.ColorRelativeLayout;
@@ -90,15 +91,28 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
     @Override
     protected void initView() {
         mActivity = (MainActivity) mContext;
+        initHeadView();
+
+        initRecyclerView();
+
+        mResideMenu = mActivity.getResideMenu();
+        mResideMenu.addIgnoredView(mBanner);
+        mFab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_long_arrow_up).sizeDp(24));
+    }
+
+    private void initHeadView() {
         mTitle.setVisibility(View.GONE);
         mTitleName.setText(mActivity.getString(R.string.video_jingxuan));
-        mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(18));
+        mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(20));
         mHeaderView = LayoutInflater.from(mContext).inflate(R.layout.home_header, null);
         mBanner = ButterKnife.findById(mHeaderView, R.id.banner);
         mRlGoSearch = ButterKnife.findById(mHeaderView, R.id.rlGoSearch);
         mEtSearchKey = ButterKnife.findById(mHeaderView, R.id.etSearchKey);
+        ThemeUtil.setIconDrawable(mContext,mEtSearchKey,MaterialDesignIconic.Icon.gmi_search,14,5);
         mBanner.setPlayDelay(2000);
+    }
 
+    private void initRecyclerView() {
         mAdapter = new HomedAdapter(getContext());
         mRecyclerView.setAdapterWithProgress(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -108,9 +122,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         mRecyclerView.addItemDecoration(itemDecoration);
-
-        mResideMenu = mActivity.getResideMenu();
-        mResideMenu.addIgnoredView(mBanner);
     }
 
     @Override

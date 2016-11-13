@@ -53,7 +53,7 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:background="@mipmap/like"/>
+                        android:background="@mipmap/ic_like"/>
 
                     <TextView
                         android:id="@+id/tv_like"

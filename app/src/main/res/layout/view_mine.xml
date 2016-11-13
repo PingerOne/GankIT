@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/head_layout"
         android:layout_width="match_parent"
-        android:background="@drawable/mine_bg"
+        android:background="@mipmap/mine_bg"
         android:layout_height="200dp">
 
         <LinearLayout

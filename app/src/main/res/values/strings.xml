@@ -45,11 +45,22 @@
     <string name="logined">您已经登录了</string>
     <string name="all">all</string>
     <string name="please_login">请先登录</string>
+
+    <!--福利-->
     <string name="fuli">福利</string>
     <string name="action_share">分享</string>
     <string name="action_save">保存</string>
     <string name="share_to">分享GankIT到...</string>
     <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+
+    <!--关于-->
     <string name="share_github_title">欢迎来我的Github Star和Fork</string>
     <string name="github">https://github.com/PingerWan/GankIT</string>
+    <string name="root_github">https://github.com/PingerWan/</string>
+    <string name="jianshu">简书：</string>
+    <string name="dasheng">敲代码的大圣</string>
+    <string name="root_jianshu">http://www.jianshu.com/users/64f479a1cef7/latest_articles</string>
+    <string name="github_desc">GitHub：</string>
+    <string name="pinger">PingerWan</string>
+    <string name="setting">设置</string>
 </resources>

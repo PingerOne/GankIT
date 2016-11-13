@@ -179,11 +179,11 @@ public class TextViewExpandableAnimation extends LinearLayout implements OnClick
         textExpand = ta.getString(R.styleable.TextViewExpandableAnimation_tvea_textExpand);
 
         if (null == drawableShrink) {
-            drawableShrink = ContextCompat.getDrawable(context, R.drawable.ic_keyboard_arrow_up_white_24dp);
+            drawableShrink = ContextCompat.getDrawable(context, R.mipmap.ic_arrow_up_white_24dp);
         }
 
         if (null == drawableExpand) {
-            drawableExpand = ContextCompat.getDrawable(context, R.drawable.ic_keyboard_arrow_down_white_24dp);
+            drawableExpand = ContextCompat.getDrawable(context, R.mipmap.ic_arrow_down_white_24dp);
         }
 
         if (TextUtils.isEmpty(textShrink)) {

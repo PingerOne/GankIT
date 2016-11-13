@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="GankIT Just Do It"
+        android:text="GankIT Just Do IT"
         android:textColor="@color/white"
         android:textSize="20sp"/>
 

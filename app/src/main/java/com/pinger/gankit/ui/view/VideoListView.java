@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.model.bean.VideoInfo;
@@ -73,7 +76,8 @@ public class VideoListView extends RootView<VideoListContact.Presenter> implemen
     @Override
     protected void initView() {
         mActivity = (VideoListActivity) mContext;
-        mIvIcon.setImageResource(R.drawable.ic_arrow_back_white_24dp);
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(20));
+        mFab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_long_arrow_up).sizeDp(24));
 
         // 设置适配器
         mAdapter = new VideoListAdapter(mContext);
