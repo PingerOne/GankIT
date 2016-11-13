@@ -1,8 +1,12 @@
 package com.pinger.gankit.ui.activity;
 
+import android.graphics.Color;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseTabActivity;
 import com.pinger.gankit.ui.adapter.BaseTabAdapter;
 import com.pinger.gankit.ui.fragment.news.NewsTotFragment;
@@ -19,7 +23,8 @@ public class NewsActivity extends BaseTabActivity {
 
     @Override
     protected void initToolBar(TextView tvName, ImageView ivIcon) {
-        tvName.setText("新闻");
+        tvName.setText(getString(R.string.news));
+        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_open_in_new).sizeDp(20));
     }
 
     @Override

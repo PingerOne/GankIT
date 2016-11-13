@@ -11,8 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.animation.DecelerateInterpolator;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.SwipeBackActivity;
 import com.pinger.gankit.manager.ImageManager;
@@ -24,6 +25,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 
 /*
@@ -41,7 +44,7 @@ public class PhotoActivity extends SwipeBackActivity {
     public static final String IMAGE_URL = "image_url";
     private static final String TRANSIT_PIC = "pic";
     @BindView(R.id.picture)
-    ImageView mPicture;
+    PhotoView mPicture;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.root)
@@ -50,12 +53,13 @@ public class PhotoActivity extends SwipeBackActivity {
     AppBarLayout mAppbar;
     private String mImageTitle, mImageUrl;
     private boolean isShow = false;
-    private int mAppBarWidth;
+    private int mAppBarHeight;
+    private PhotoViewAttacher mPhotoViewAttacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone);
+        setContentView(R.layout.activity_photo);
         unbinder = ButterKnife.bind(this);
 
         parseIntent();
@@ -66,23 +70,15 @@ public class PhotoActivity extends SwipeBackActivity {
         ViewCompat.setTransitionName(mPicture, TRANSIT_PIC);
         // 填充图片
         ImageManager.load(this, mImageUrl, mPicture);
-//         TODO 设置图片适配器，加载左右多张图片
 
-        // 设置图片点击事件
-        mPicture.setOnClickListener(view -> {
-            if (isShow) {
-                ViewCompat.animate(mAppbar).setDuration(500).translationY(0);
-            } else {
-                ViewCompat.animate(mAppbar).setDuration(1000).translationY(-mAppBarWidth);
-            }
-            isShow = !isShow;
-        });
+        // 集成PhotoView实现图片缩放
+        setupPhotoAttacher();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        mAppBarWidth = mAppbar.getWidth();
+        mAppBarHeight = mAppbar.getHeight();
     }
 
     private void parseIntent() {
@@ -150,4 +146,33 @@ public class PhotoActivity extends SwipeBackActivity {
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_to)));
     }
 
+
+    private void setupPhotoAttacher() {
+        mPhotoViewAttacher = new PhotoViewAttacher(mPicture);
+        mPhotoViewAttacher.setOnViewTapListener((view, v, v1) -> hideOrShowToolbar());
+        mPhotoViewAttacher.setOnLongClickListener(v -> {
+            // 弹出对话框
+            new MaterialDialog.Builder(PhotoActivity.this)
+                    .title(getString(R.string.save_to_local))
+                    .positiveText(getString(R.string.confirm))
+                    .onPositive((dialog, which) -> {
+                        save();
+                    })
+                    .negativeText(getString(R.string.cancel))
+                    .show();
+
+            return true;
+        });
+    }
+
+    /**
+     * 显示隐藏ToolBar
+     */
+    private void hideOrShowToolbar() {
+        mAppbar.animate()
+                .translationY(isShow ? 0 : -mAppBarHeight)
+                .setInterpolator(new DecelerateInterpolator(2))
+                .start();
+        isShow = !isShow;
+    }
 }

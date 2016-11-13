@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">GankIT</string>
-    <string name="translate_up_down_behavior">com.pinger.gankit.widght.TranslateUpDownBehavior</string>
 
 
     <!--干货顶部指示器-->
@@ -13,6 +12,17 @@
         <item>资源</item>
         <item>前端</item>
         <item>瞎推荐</item>
+    </string-array>
+
+    <!--新闻顶部指示器-->
+    <string-array name="news_title">
+        <item>头条</item>
+        <item>社会</item>
+        <item>娱乐</item>
+        <item>科技</item>
+        <item>游戏</item>
+        <item>军事</item>
+        <item>体育</item>
     </string-array>
 
 
@@ -50,7 +60,7 @@
     <string name="fuli">福利</string>
     <string name="action_share">分享</string>
     <string name="action_save">保存</string>
-    <string name="share_to">分享GankIT到...</string>
+    <string name="share_to">分享GankIT到…</string>
     <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
 
     <!--关于-->
@@ -63,4 +73,10 @@
     <string name="github_desc">GitHub：</string>
     <string name="pinger">PingerWan</string>
     <string name="setting">设置</string>
+    <string name="confirm">确定</string>
+
+    <!--其他-->
+    <string name="save_to_local">是否保存到本地？</string>
+    <string name="news">新闻</string>
+
 </resources>

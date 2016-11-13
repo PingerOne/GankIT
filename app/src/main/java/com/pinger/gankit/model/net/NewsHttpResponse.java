@@ -11,6 +11,7 @@ package com.pinger.gankit.model.net;
 
 public class NewsHttpResponse<T> {
 
+    public boolean error;
     public String showapi_res_error;
     public int showapi_res_code;
     public T showapi_res_body;

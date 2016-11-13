@@ -38,6 +38,7 @@ import com.pinger.gankit.utils.SPUtil;
 import com.pinger.gankit.utils.ThemeUtil;
 import com.pinger.gankit.widget.ResideMenu;
 import com.pinger.gankit.widget.UnScrollViewPager;
+import com.pinger.gankit.widget.theme.ColorRelativeLayout;
 
 import org.simple.eventbus.EventBus;
 
@@ -72,6 +73,8 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
     private TextView mTvFuli;
     @BindView(R.id.usViewPager)
     UnScrollViewPager mUsViewPager;
+    @BindView(R.id.rootView)
+    ColorRelativeLayout mRootView;
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView mBottomNavigationView;
     private MainActivity mActivity;
@@ -85,7 +88,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
     public MainView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
 
     @Override
     protected void getLayout() {
@@ -132,7 +134,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         ThemeUtil.setIconDrawable(mContext, mTvExit, MaterialDesignIconic.Icon.gmi_fullscreen_exit, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvFuli, MaterialDesignIconic.Icon.gmi_gif, 16, 10);
 
-
         if (!SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
             mIvAvatar.setImageResource(R.mipmap.user_unknow);
             mTvDesc.setText(mContext.getString(R.string.please_login));
@@ -142,7 +143,6 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         mTvDesc.setText(SPUtil.getString(mActivity, Constant.USER_NICK_NAME));
         ImageManager.load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvAvatar);
     }
-
 
     @Override
     protected void initEvent() {
