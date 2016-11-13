@@ -13,7 +13,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.pinger.gankit.model.bean.GankBean;
-import com.pinger.gankit.ui.adapter.GankAdapter;
+import com.pinger.gankit.ui.adapter.GankBaseAdapter;
 
 import java.util.List;
 
@@ -28,12 +28,12 @@ public class GankIOSView extends GankBaseView {
     }
 
     @Override
-    protected void initData(GankAdapter adapter, List<GankBean> gankBeanList) {
-        adapter.setNewData(gankBeanList);
+    protected void initData(GankBaseAdapter adapter, List<GankBean> gankBeanList) {
+        updateData(adapter, gankBeanList, true);
     }
 
     @Override
-    protected void initMoreData(GankAdapter adapter, List<GankBean> gankBeanMoreList) {
-        adapter.addData(gankBeanMoreList);
+    protected void initMoreData(GankBaseAdapter adapter, List<GankBean> gankBeanMoreList) {
+        updateData(adapter, gankBeanMoreList, false);
     }
 }

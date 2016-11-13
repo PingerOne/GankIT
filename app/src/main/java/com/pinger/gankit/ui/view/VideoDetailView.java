@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.manager.ImageManager;
@@ -40,7 +43,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  *  @描述：    视频详情页的View层
  */
 
-public class VideoDetailView extends RootView<VideoDetailContact.Presenter> implements VideoDetailContact.View, View.OnClickListener {
+public class VideoDetailView extends RootView<VideoDetailContact.Presenter> implements VideoDetailContact.View {
 
 
     @BindView(R.id.toolbar)
@@ -55,6 +58,8 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
     ProgressView mLoadingView;
     @BindView(R.id.iv_icon)
     ImageView mIvIcon;
+    @BindView(R.id.iv_share)
+    ImageView mIvShare;
     @BindView(R.id.tv_name)
     TextView mTvName;
     private List<Fragment> mFragments;
@@ -75,7 +80,8 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
 
     @Override
     protected void initView() {
-        mIvIcon.setImageResource(R.drawable.ic_arrow_back_white_24dp);
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(20));
+        mIvShare.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_share).sizeDp(20));
 
         initData();
         // 设置ViewPager和TabLayout
@@ -100,7 +106,7 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
 
     @Override
     protected void initEvent() {
-        mIvIcon.setOnClickListener(this);
+        mIvIcon.setOnClickListener(view -> ((VideoDetailActivity) mContext).finish());
     }
 
 
@@ -150,17 +156,6 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
     @Override
     public boolean isActive() {
         return mActive;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_icon:
-                if (mContext instanceof VideoDetailActivity) {
-                    ((VideoDetailActivity) mContext).finish();
-                }
-                break;
-        }
     }
 
     private class VideoDetailAdapter extends FragmentPagerAdapter {

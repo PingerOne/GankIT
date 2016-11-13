@@ -71,9 +71,9 @@ public class PhotoActivity extends SwipeBackActivity {
         // 设置图片点击事件
         mPicture.setOnClickListener(view -> {
             if (isShow) {
-                ViewCompat.animate(mAppbar).translationY(0);
+                ViewCompat.animate(mAppbar).setDuration(1200).translationY(0);
             } else {
-                ViewCompat.animate(mAppbar).translationY(-mToolbarWidth);
+                ViewCompat.animate(mAppbar).setDuration(1200).translationY(-mToolbarWidth);
             }
             isShow = !isShow;
         });
@@ -128,8 +128,7 @@ public class PhotoActivity extends SwipeBackActivity {
                             appDir.getAbsolutePath());
                     Snackbar.make(mRoot, msg, Snackbar.LENGTH_SHORT).show();
                 }, error -> Snackbar.make(mRoot, error.getMessage() + "\n再试试...", Snackbar.LENGTH_SHORT).show());
-        //   TODO 父类没有添加订阅的方法，需要完善代码，获取将保存的代码抽离到Presenter中完成
-        // addSubscribe(s);
+        addSubscribe(s);
     }
 
 

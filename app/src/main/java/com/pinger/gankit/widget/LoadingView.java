@@ -19,9 +19,9 @@ import com.pinger.gankit.R;
 public class LoadingView extends View {
 
     // 大圆(里面包含很多小圆的半径)
-    private float mRotationRadius = 150;
+    private float mRotationRadius = 50;
     // 每一个小圆的半径
-    private float mCircleRadius = 30;
+    private float mCircleRadius = 10;
     // 小圆圈的颜色列表，在init方法里面初始化
     private int[] mCircleColors;
     // 大圆和小圆旋转的时间

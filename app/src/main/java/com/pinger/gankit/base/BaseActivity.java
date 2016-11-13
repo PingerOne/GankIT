@@ -1,24 +1,22 @@
 package com.pinger.gankit.base;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.app.App;
-import com.pinger.gankit.utils.ScreenUtil;
 import com.pinger.gankit.utils.ThemeUtil;
-import com.pinger.gankit.widget.theme.ColorRelativeLayout;
 import com.pinger.gankit.widget.theme.Theme;
 
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.base
@@ -32,6 +30,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
     protected Unbinder unbinder;
     protected T mPresenter;
+    protected CompositeSubscription mCompositeSubscription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +49,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     @Override
     protected void onStart() {
         super.onStart();
-       // setTitleHeight(getRootView(this));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        App.getInstance().unregisterActivity(this);
-        if (unbinder != null)
-            unbinder.unbind();
-        mPresenter = null;
+        // setTitleHeight(getRootView(this));
     }
 
     /**
@@ -135,25 +126,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
     }
 
-
-    private ProgressDialog dialog;
-
-    protected void showLoading() {
-        if (dialog != null && dialog.isShowing()) return;
-        dialog = new ProgressDialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("正在加载中...");
-        dialog.show();
-    }
-
-    protected void dismissLoading() {
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
-
     /**
      * 初始化 Toolbar
      */
@@ -163,7 +135,36 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnabled);
     }
 
-    protected void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
-        initToolBar(toolbar, homeAsUpEnabled, getString(resTitle));
+    /**
+     * 添加订阅者
+     *
+     * @param subscription
+     */
+    protected void addSubscribe(Subscription subscription) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(subscription);
     }
+
+    /**
+     * 不订阅
+     */
+    protected void unSubscribe() {
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.unsubscribe();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.getInstance().unregisterActivity(this);
+        if (unbinder != null)
+            unbinder.unbind();
+        mPresenter = null;
+        unSubscribe();
+    }
+
+
 }

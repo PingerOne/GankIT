@@ -28,7 +28,7 @@ import rx.Subscription;
 
 public class FuliPresenter extends RxPresenter implements FuliContact.Presenter {
 
-    public static final int PAGENUM = 20;
+    public static final int PAGENUM = 15;
     private final FuliView mFuliView;
     private int mPage;
 
@@ -78,7 +78,6 @@ public class FuliPresenter extends RxPresenter implements FuliContact.Presenter 
                 });
         addSubscribe(rxSubscription);
     }
-
 
     /**
      * 设置图片的随机高度

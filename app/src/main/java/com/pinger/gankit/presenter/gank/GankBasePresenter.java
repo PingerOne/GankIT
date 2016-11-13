@@ -24,7 +24,7 @@ public abstract class GankBasePresenter extends RxPresenter implements GankConta
     private int mPage;
     private final GankBaseView mGankView;
     protected String mType;
-    private static final int PAGENUM = 30;
+    public static final int PAGENUM = 30;
 
     public GankBasePresenter(GankBaseView gankView) {
         this.mGankView = gankView;
@@ -37,7 +37,7 @@ public abstract class GankBasePresenter extends RxPresenter implements GankConta
 
     @Override
     public void onRefresh() {
-        mPage = 0;
+        mPage = 1;
         getGankData(mType);
     }
 

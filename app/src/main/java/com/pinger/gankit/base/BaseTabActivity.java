@@ -1,5 +1,6 @@
 package com.pinger.gankit.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -7,10 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pinger.gankit.R;
+import com.pinger.gankit.ui.activity.WebActivity;
 import com.pinger.gankit.ui.adapter.BaseTabAdapter;
 import com.pinger.gankit.widget.SwipeViewPager;
-
-import org.simple.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +47,6 @@ public abstract class BaseTabActivity extends SwipeBackActivity {
         initView();
     }
 
-
     private void initView() {
         initToolBar(mTvName, mIvIcon);
 
@@ -63,8 +62,14 @@ public abstract class BaseTabActivity extends SwipeBackActivity {
         mViewPager.setOffscreenPageLimit(count);
         mAdapter.notifyDataSetChanged();
 
-        // 将Fab发送出去，让子类去实现点击事件
-        EventBus.getDefault().post(mFab,TAB_FAB);
+        // Fab点击事件
+        mFab.setOnClickListener(view -> {
+            // 加载网页
+            Intent intent = new Intent(BaseTabActivity.this, WebActivity.class);
+            intent.putExtra(WebActivity.WEB_TITLE, getString(R.string.share_github_title));
+            intent.putExtra(WebActivity.WEB_URL, getString(R.string.github));
+            startActivity(intent);
+        });
     }
 
     /**

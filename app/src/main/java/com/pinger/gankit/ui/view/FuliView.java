@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -70,6 +71,7 @@ public class FuliView extends RootView<FuliContact.Presenter> implements FuliCon
         // 设置适配器
         mAdapter = new FuliAdapter(mContext);
         mRecyclerView.setAdapterWithProgress(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setErrorView(R.layout.view_error);
         mAdapter.setMore(R.layout.view_more, this);
         mAdapter.setNoMore(R.layout.view_nomore);
@@ -88,7 +90,7 @@ public class FuliView extends RootView<FuliContact.Presenter> implements FuliCon
         // 设置条目点击事件
         mAdapter.setOnItemClickListener(position -> {
             GankBean gankBean = mAdapter.getAllData().get(position);
-            Intent intent = new Intent(mContext,PhotoActivity.class);
+            Intent intent = new Intent(mContext, PhotoActivity.class);
             intent.putExtra(PhotoActivity.IMAGE_TITLE, gankBean.getDesc());
             intent.putExtra(PhotoActivity.IMAGE_URL, gankBean.getUrl());
             mContext.startActivity(intent);

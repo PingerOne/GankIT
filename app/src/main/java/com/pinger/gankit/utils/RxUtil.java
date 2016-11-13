@@ -29,13 +29,8 @@ public class RxUtil {
      * @return
      */
     public static <T> Observable.Transformer<T, T> rxSchedulerHelper() {    //compose简化线程
-        return new Observable.Transformer<T, T>() {
-            @Override
-            public Observable<T> call(Observable<T> observable) {
-                return observable.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
+        return observable -> observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
@@ -45,23 +40,18 @@ public class RxUtil {
      * @return
      */
     public static <T> Observable.Transformer<VideoHttpResponse<T>, T> handleResult() {   //compose判断结果
-        return new Observable.Transformer<VideoHttpResponse<T>, T>() {
+        return httpResponseObservable -> httpResponseObservable.flatMap(new Func1<VideoHttpResponse<T>, Observable<T>>() {
             @Override
-            public Observable<T> call(Observable<VideoHttpResponse<T>> httpResponseObservable) {
-                return httpResponseObservable.flatMap(new Func1<VideoHttpResponse<T>, Observable<T>>() {
-                    @Override
-                    public Observable<T> call(VideoHttpResponse<T> videoHttpResponse) {
-                        if (videoHttpResponse.code == 200) {
-                            return createData(videoHttpResponse.ret);
-                        } else if (!TextUtils.isEmpty(videoHttpResponse.msg)) {
-                            return Observable.error(new ApiException("*" + videoHttpResponse.msg));
-                        } else {
-                            return Observable.error(new ApiException("*" + "服务器返回error"));
-                        }
-                    }
-                });
+            public Observable<T> call(VideoHttpResponse<T> videoHttpResponse) {
+                if (videoHttpResponse.code == 200) {
+                    return createData(videoHttpResponse.ret);
+                } else if (!TextUtils.isEmpty(videoHttpResponse.msg)) {
+                    return Observable.error(new ApiException("*" + videoHttpResponse.msg));
+                } else {
+                    return Observable.error(new ApiException("*" + "服务器返回error"));
+                }
             }
-        };
+        });
     }
 
 
@@ -71,21 +61,16 @@ public class RxUtil {
      * @return
      */
     public static <T> Observable.Transformer<GankHttpResponse<T>, T> handleGankResult() {   //compose判断结果
-        return new Observable.Transformer<GankHttpResponse<T>, T>() {
+        return httpResponseObservable -> httpResponseObservable.flatMap(new Func1<GankHttpResponse<T>, Observable<T>>() {
             @Override
-            public Observable<T> call(Observable<GankHttpResponse<T>> httpResponseObservable) {
-                return httpResponseObservable.flatMap(new Func1<GankHttpResponse<T>, Observable<T>>() {
-                    @Override
-                    public Observable<T> call(GankHttpResponse<T> tGankHttpResponse) {
-                        if (!tGankHttpResponse.getError()) {
-                            return createData(tGankHttpResponse.getResults());
-                        } else {
-                            return Observable.error(new ApiException("服务器返回error"));
-                        }
-                    }
-                });
+            public Observable<T> call(GankHttpResponse<T> tGankHttpResponse) {
+                if (!tGankHttpResponse.getError()) {
+                    return createData(tGankHttpResponse.getResults());
+                } else {
+                    return Observable.error(new ApiException("服务器返回error"));
+                }
             }
-        };
+        });
     }
 
     /**

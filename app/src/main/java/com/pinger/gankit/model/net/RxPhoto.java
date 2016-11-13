@@ -68,6 +68,7 @@ public class RxPhoto {
             try {
                 FileOutputStream outputStream = new FileOutputStream(file);
                 assert bitmap != null;
+                // 最高精确度保存到本地
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                 outputStream.flush();
                 outputStream.close();
