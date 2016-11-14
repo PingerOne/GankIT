@@ -27,6 +27,7 @@ public class App extends Application {
      * 保证唯一
      */
     private Set<Activity> allActivities;
+//    private RefWatcher mRefWatcher;
 
     /**
      * 同步单利
@@ -43,7 +44,27 @@ public class App extends Application {
         instance = this;
 
         initNineGridView();
+//        initLeak();
     }
+
+
+    /**
+     * 检查内存泄漏
+     //     */
+//    private void initLeak() {
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        mRefWatcher = LeakCanary.install(this);
+//    }
+//
+//    public RefWatcher getRefWatcher(Context context) {
+//        App application = (App) context.getApplicationContext();
+//        return application.mRefWatcher;
+//    }
+
 
     /**
      * 初始化新闻图片加载器

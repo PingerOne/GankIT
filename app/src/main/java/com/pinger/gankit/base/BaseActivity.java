@@ -148,5 +148,9 @@ public class BaseActivity<T extends BasePresenter> extends SupportActivity {
             unbinder.unbind();
         mPresenter = null;
         unSubscribe();
+
+//        // 检测内存泄漏
+//        RefWatcher refWatcher = App.getInstance().getRefWatcher(this);
+//        refWatcher.watch(this);
     }
 }

@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,20 +94,13 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (unbinder != null)
-            unbinder.unbind();
-    }
-
-
-    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             loadLazyData();
         }
     }
+
 
     private void loadLazyData() {
         // 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
@@ -172,5 +164,16 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
                 }
             }).start();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+//        // 检测内存泄漏
+//        RefWatcher refWatcher = App.getInstance().getRefWatcher(getActivity());
+//        refWatcher.watch(this);
     }
 }
