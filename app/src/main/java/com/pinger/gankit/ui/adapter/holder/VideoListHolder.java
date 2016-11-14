@@ -39,6 +39,6 @@ public class VideoListHolder extends BaseViewHolder<VideoType> {
 
         params.height = (int) (width * 1.1);
         mImgPicture.setLayoutParams(params);
-        ImageManager.load(getContext(), data.pic, mImgPicture);
+        ImageManager.getsInstance().load(getContext(), data.pic, mImgPicture);
     }
 }

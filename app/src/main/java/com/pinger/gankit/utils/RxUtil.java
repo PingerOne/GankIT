@@ -9,9 +9,11 @@ package com.pinger.gankit.utils;
  */
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.pinger.gankit.model.net.ApiException;
 import com.pinger.gankit.model.net.GankHttpResponse;
+import com.pinger.gankit.model.net.NewsHttpResponse;
 import com.pinger.gankit.model.net.VideoHttpResponse;
 
 import rx.Observable;
@@ -57,6 +59,7 @@ public class RxUtil {
 
     /**
      * 干货数据的返回结果
+     *
      * @param <T>
      * @return
      */
@@ -66,6 +69,26 @@ public class RxUtil {
             public Observable<T> call(GankHttpResponse<T> tGankHttpResponse) {
                 if (!tGankHttpResponse.getError()) {
                     return createData(tGankHttpResponse.getResults());
+                } else {
+                    return Observable.error(new ApiException("服务器返回error"));
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 返回新闻数据结果
+     *
+     * @param <T>
+     * @return
+     */
+    public static <T> Observable.Transformer<NewsHttpResponse<T>, T> handleNewsResult() {   //compose判断结果
+        return httpResponseObservable -> httpResponseObservable.flatMap(new Func1<NewsHttpResponse<T>, Observable<T>>() {
+            @Override
+            public Observable<T> call(NewsHttpResponse<T> tNewsHttpResponse) {
+                if (!tNewsHttpResponse.error) {
+                    return createData(tNewsHttpResponse.showapi_res_body);
                 } else {
                     return Observable.error(new ApiException("服务器返回error"));
                 }

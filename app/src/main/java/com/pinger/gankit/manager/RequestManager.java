@@ -8,8 +8,11 @@ package com.pinger.gankit.manager;
  *  @描述：    网络请求管理器
  */
 
+import android.util.Log;
+
 import com.pinger.gankit.app.Constant;
 import com.pinger.gankit.model.net.GankApis;
+import com.pinger.gankit.model.net.NewsApis;
 import com.pinger.gankit.model.net.VideoApis;
 import com.pinger.gankit.utils.SystemUtil;
 
@@ -32,7 +35,13 @@ public class RequestManager {
     private static OkHttpClient okHttpClient = null;
     private static VideoApis videoApi;
     private static GankApis gankApis;
+    private static NewsApis newsApis;
 
+    /**
+     * 获取视频API
+     *
+     * @return
+     */
     public static VideoApis getVideoApi() {
         initOkHttp();
         if (videoApi == null) {
@@ -47,6 +56,11 @@ public class RequestManager {
         return videoApi;
     }
 
+    /**
+     * 获取干货API
+     *
+     * @return
+     */
     public static GankApis getGankApis() {
         initOkHttp();
         if (gankApis == null) {
@@ -60,6 +74,28 @@ public class RequestManager {
         }
         return gankApis;
     }
+
+
+    /**
+     * 获取新闻API
+     *
+     * @return
+     */
+    public static NewsApis getNewsApis() {
+        initOkHttp();
+
+        if (newsApis == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl(NewsApis.HOST)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .build();
+            newsApis = retrofit.create(NewsApis.class);
+        }
+        return newsApis;
+    }
+
 
     private static void initOkHttp() {
         if (okHttpClient == null) {

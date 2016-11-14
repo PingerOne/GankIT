@@ -78,5 +78,6 @@
     <!--其他-->
     <string name="save_to_local">是否保存到本地？</string>
     <string name="news">新闻</string>
+    <string name="ganhuo">干货</string>
 
 </resources>

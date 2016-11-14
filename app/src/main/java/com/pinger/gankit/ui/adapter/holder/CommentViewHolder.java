@@ -42,6 +42,6 @@ public class CommentViewHolder extends BaseViewHolder<VideoType> {
         mTvLike.setText(data.likeNum);
         mTvComment.setText(data.msg);
         if (!TextUtils.isEmpty(data.userPic))
-            ImageManager.load(getContext(), data.userPic, mIvAvatar);
+            ImageManager.getsInstance().load(getContext(), data.userPic, mIvAvatar);
     }
 }

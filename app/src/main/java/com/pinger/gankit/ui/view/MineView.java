@@ -92,7 +92,7 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
         }
 
         mTvUserName.setText(SPUtil.getString(mActivity, Constant.USER_NICK_NAME));
-        ImageManager.load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvUserAvatar);
+        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvUserAvatar);
     }
 
     /**
@@ -156,7 +156,7 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
             public void onComplete(Object response) {
                 Gson gson = new Gson();
                 UserBean info = gson.fromJson(response.toString(), UserBean.class);
-                ImageManager.load(mActivity, info.figureurl_qq_2, mIvUserAvatar);
+                ImageManager.getsInstance().load(mActivity, info.figureurl_qq_2, mIvUserAvatar);
                 mNickname = info.nickname;
                 mTvUserName.setText(mNickname);
 

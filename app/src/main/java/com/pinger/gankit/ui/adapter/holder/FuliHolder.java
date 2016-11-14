@@ -30,6 +30,6 @@ public class FuliHolder extends BaseViewHolder<GankBean> {
         ViewGroup.LayoutParams params = mPicture.getLayoutParams();
         params.height = data.getHeight();
         mPicture.setLayoutParams(params);
-        ImageManager.load(getContext(), data.getUrl(), mPicture);
+        ImageManager.getsInstance().load(getContext(), data.getUrl(), mPicture);
     }
 }

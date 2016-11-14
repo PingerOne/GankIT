@@ -12,11 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.pinger.gankit.model.bean.VideoInfo;
-import com.pinger.gankit.ui.activity.GankActivity;
 import com.pinger.gankit.ui.activity.MainActivity;
 import com.pinger.gankit.ui.activity.SplashActivity;
 import com.pinger.gankit.ui.activity.VideoDetailActivity;
 import com.pinger.gankit.ui.activity.VideoListActivity;
+import com.pinger.gankit.ui.activity.WebActivity;
 
 public class JumpUtil {
 
@@ -48,6 +48,13 @@ public class JumpUtil {
 
     public static void jumpActivity(Context context, Class<?> clazz) {
         Intent intent = new Intent(context, clazz);
+        context.startActivity(intent);
+    }
+
+    public static void jump2WebActivity(Context context, String title, String url) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra(WebActivity.WEB_TITLE, title);
+        intent.putExtra(WebActivity.WEB_URL, url);
         context.startActivity(intent);
     }
 }

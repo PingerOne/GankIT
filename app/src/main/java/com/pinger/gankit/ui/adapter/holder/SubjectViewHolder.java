@@ -40,6 +40,6 @@ public class SubjectViewHolder extends BaseViewHolder<VideoInfo> {
 
         params.height = (int) (width / 1.8);
         mImgVideo.setLayoutParams(params);
-        ImageManager.load(getContext(), data.pic, mImgVideo);
+        ImageManager.getsInstance().load(getContext(), data.pic, mImgVideo);
     }
 }

@@ -3,6 +3,8 @@ package com.pinger.gankit.model.net;
 
 import com.pinger.gankit.model.bean.NewsBean;
 
+import java.util.List;
+
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
@@ -40,6 +42,8 @@ public interface NewsApis {
      * */
 
 
+//    http://apis.baidu.com/showapi_open_bus/channel_news/search_news?channelName=国内最新&page=1
+
     /**
      * 获取新闻数据
      *
@@ -49,5 +53,5 @@ public interface NewsApis {
      */
     @Headers("apikey:75e0aecf9a0d887adf328cb770f3a8ea")
     @GET("showapi_open_bus/channel_news/search_news")
-    Observable<NewsHttpResponse<NewsBean>> getNewsList(@Query("channelName") String channelName, @Query("page") String page);
+    Observable<NewsHttpResponse<NewsBean>> getNewsList(@Query("channelName") String channelName, @Query("page") int page);
 }

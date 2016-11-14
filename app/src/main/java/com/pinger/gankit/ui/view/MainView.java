@@ -126,13 +126,13 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         // 更换主题图标
         ThemeUtil.setIconDrawable(mContext, mTvVideo, MaterialDesignIconic.Icon.gmi_videocam, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvGank, MaterialDesignIconic.Icon.gmi_android, 16, 10);
-        ThemeUtil.setIconDrawable(mContext, mTvNews, MaterialDesignIconic.Icon.gmi_open_in_new, 16, 10);
-        ThemeUtil.setIconDrawable(mContext, mTvAbout, MaterialDesignIconic.Icon.gmi_pages, 16, 10);
+        ThemeUtil.setIconDrawable(mContext, mTvNews, MaterialDesignIconic.Icon.gmi_book, 16, 10);
+        ThemeUtil.setIconDrawable(mContext, mTvAbout, MaterialDesignIconic.Icon.gmi_account, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvShare, MaterialDesignIconic.Icon.gmi_share, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvSetting, MaterialDesignIconic.Icon.gmi_settings, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvTheme, MaterialDesignIconic.Icon.gmi_palette, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvExit, MaterialDesignIconic.Icon.gmi_fullscreen_exit, 16, 10);
-        ThemeUtil.setIconDrawable(mContext, mTvFuli, MaterialDesignIconic.Icon.gmi_gif, 16, 10);
+        ThemeUtil.setIconDrawable(mContext, mTvFuli, MaterialDesignIconic.Icon.gmi_face, 16, 10);
 
         if (!SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
             mIvAvatar.setImageResource(R.mipmap.user_unknow);
@@ -141,7 +141,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         }
 
         mTvDesc.setText(SPUtil.getString(mActivity, Constant.USER_NICK_NAME));
-        ImageManager.load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvAvatar);
+        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvAvatar);
     }
 
     @Override

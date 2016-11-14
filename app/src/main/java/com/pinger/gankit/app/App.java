@@ -3,6 +3,8 @@ package com.pinger.gankit.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.lzy.ninegrid.NineGridView;
+import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.model.db.RealmHelper;
 
 import java.util.HashSet;
@@ -33,6 +35,7 @@ public class App extends Application {
 
     /**
      * 同步单利
+     *
      * @return
      */
     public static synchronized App getInstance() {
@@ -45,6 +48,14 @@ public class App extends Application {
         instance = this;
 
         initRealm();
+        initNineGridView();
+    }
+
+    /**
+     * 初始化新闻图片加载器
+     */
+    private void initNineGridView() {
+        NineGridView.setImageLoader(ImageManager.getsInstance().new GlideImageLoader());
     }
 
 

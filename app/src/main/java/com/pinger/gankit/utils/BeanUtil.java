@@ -8,9 +8,14 @@ package com.pinger.gankit.utils;
  *  @描述：    TODO
  */
 
+import com.lzy.ninegrid.ImageInfo;
+import com.pinger.gankit.model.bean.NewsBean;
 import com.pinger.gankit.model.bean.VideoInfo;
 import com.pinger.gankit.model.bean.VideoRes;
 import com.pinger.gankit.model.bean.VideoType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeanUtil {
 
@@ -34,5 +39,20 @@ public class BeanUtil {
         videoRes.airTime = StringUtil.isEmpty(videoInfo.airTime);
         videoRes.pic = StringUtil.isEmpty(videoInfo.pic);
         return videoRes;
+    }
+
+
+    public static List<ImageInfo> ImageList2ImageInfoList(List<NewsBean.NewsImage> images) {
+        ArrayList<ImageInfo> imageInfos = new ArrayList<>();
+        if (images != null) {
+            for (NewsBean.NewsImage image : images) {
+
+                ImageInfo info = new ImageInfo();
+                info.setThumbnailUrl(image.url);
+                info.setBigImageUrl(image.url);
+                imageInfos.add(info);
+            }
+        }
+        return imageInfos;
     }
 }

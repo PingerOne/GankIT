@@ -68,17 +68,14 @@ public class SwipeDeckAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        ImageManager.load(mContext, mData.get(position).pic, holder.offerImage);
+        ImageManager.getsInstance().load(mContext, mData.get(position).pic, holder.offerImage);
         String intro = "\t\t\t" + mData.get(position).description;
         holder.tvIntroduction.setText(intro);
         holder.tv_title.setText(mData.get(position).title);
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchData(mData.get(position));
-                JumpUtil.jump2VideoDetailActivity(mContext, mVideoInfo);
-            }
+        holder.cardView.setOnClickListener(v -> {
+            switchData(mData.get(position));
+            JumpUtil.jump2VideoDetailActivity(mContext, mVideoInfo);
         });
         return convertView;
     }

@@ -38,6 +38,6 @@ public class VideoIntroHolder extends BaseViewHolder<VideoInfo> {
 
         params.height = (int) (width * 1.2);
         mImgPicture.setLayoutParams(params);
-        ImageManager.load(getContext(), data.pic, mImgPicture);
+        ImageManager.getsInstance().load(getContext(), data.pic, mImgPicture);
     }
 }

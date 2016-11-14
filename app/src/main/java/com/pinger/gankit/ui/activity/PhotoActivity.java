@@ -15,6 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pinger.gankit.R;
+import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.base.SwipeBackActivity;
 import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.model.net.RxPhoto;
@@ -69,7 +70,7 @@ public class PhotoActivity extends SwipeBackActivity {
         // 揭露式动画
         ViewCompat.setTransitionName(mPicture, TRANSIT_PIC);
         // 填充图片
-        ImageManager.load(this, mImageUrl, mPicture);
+        ImageManager.getsInstance().load(this, mImageUrl, mPicture);
 
         // 集成PhotoView实现图片缩放
         setupPhotoAttacher();

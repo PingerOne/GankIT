@@ -66,7 +66,7 @@ public class FuliView extends RootView<FuliContact.Presenter> implements FuliCon
     @Override
     protected void initView() {
         mTvName.setText(mContext.getString(R.string.fuli));
-        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_gif).sizeDp(20));
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_face).sizeDp(20));
 
         // 设置适配器
         mAdapter = new FuliAdapter(mContext);

@@ -72,7 +72,7 @@ public class SplashView extends RootView<SplashContact.Presenter> implements Spl
     public void showContent(List<String> data) {
         if (data != null) {
             int page = StringUtil.getRandomNumber(0, data.size() - 1);
-            ImageManager.load(mContext, data.get(page), mSplashBg);
+            ImageManager.getsInstance().load(mContext, data.get(page), mSplashBg);
             // 放大动画
             mSplashBg.animate().scaleX(1.12f).scaleY(1.12f).setDuration(2000).setStartDelay(100).start();
         }

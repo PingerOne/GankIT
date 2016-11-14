@@ -31,6 +31,6 @@ public class HomeViewHolder extends BaseViewHolder<VideoInfo> {
     @Override
     public void setData(VideoInfo data) {
         tv_title.setText(data.title);
-        ImageManager.load(getContext(), data.pic, imgPicture);
+        ImageManager.getsInstance().load(getContext(), data.pic, imgPicture);
     }
 }

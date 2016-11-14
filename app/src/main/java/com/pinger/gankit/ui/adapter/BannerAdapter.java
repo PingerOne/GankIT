@@ -46,7 +46,7 @@ public class BannerAdapter extends StaticPagerAdapter {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setBackgroundResource(R.mipmap.default_320);
         //加载图片
-        ImageManager.load(mContext, list.get(position).pic, imageView);
+        ImageManager.getsInstance().load(mContext, list.get(position).pic, imageView);
         //点击事件
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

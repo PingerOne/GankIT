@@ -117,7 +117,7 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
         // 根据资源播放视频
         if (!TextUtils.isEmpty(videoRes.pic))
             // 显示最上层图片
-            ImageManager.load(mContext, videoRes.pic, mVideoPlayer.thumbImageView);
+            ImageManager.getsInstance().load(mContext, videoRes.pic, mVideoPlayer.thumbImageView);
         if (!TextUtils.isEmpty(videoRes.getVideoUrl())) {
             // 播放视频
             mVideoPlayer.setUp(videoRes.getVideoUrl()

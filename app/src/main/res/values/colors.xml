@@ -142,5 +142,7 @@
     <color name="white_translucent_tab">#DDFFFFFF</color>
     <color name="translucent">#00000000</color>
     <color name="black_translucent">#50000000</color>
+    <color name="news_title">#333333</color>
+    <color name="news_desc">#88333333</color>
 
 </resources>
