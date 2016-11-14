@@ -67,13 +67,10 @@ public class VideoIntroFragment extends BaseFragment {
         mRecyclerView.addItemDecoration(itemDecoration);
 
         // 条目点击事件
-        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // 跳转到播放页面
-                JumpUtil.jump2VideoDetailActivity(getContext(), mAdapter.getItem(position));
-                getActivity().finish();
-            }
+        mAdapter.setOnItemClickListener(position -> {
+            // 跳转到播放页面
+            JumpUtil.jump2VideoDetailActivity(getContext(), mAdapter.getItem(position));
+            getActivity().finish();
         });
 
         // 添加标题View

@@ -15,6 +15,7 @@ import java.util.List;
  *  @描述：    视频资源
  */
 public class VideoRes {
+
     public
     @SerializedName("list")
     List<VideoType> list;

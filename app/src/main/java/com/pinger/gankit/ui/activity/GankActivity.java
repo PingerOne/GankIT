@@ -32,7 +32,7 @@ public class GankActivity extends BaseTabActivity {
     @Override
     protected void initToolBar(TextView tvName, ImageView ivIcon) {
         tvName.setText(getString(R.string.ganhuo));
-        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(20));
+        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_android).sizeDp(18));
     }
 
     @Override

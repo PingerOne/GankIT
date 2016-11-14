@@ -114,7 +114,7 @@ public class SubjectView extends RootView<SubjectContact.Presenter> implements S
     @Override
     protected void initView() {
         mTvName.setText(mContext.getString(R.string.video_zhuanti));
-        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_format_subject).sizeDp(20));
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_format_subject).sizeDp(18));
         MainActivity activity = (MainActivity) mContext;
         mAdapter = new SubjectAdapter(null);
         mEasyRecyclerView.setAdapterWithProgress(mAdapter);

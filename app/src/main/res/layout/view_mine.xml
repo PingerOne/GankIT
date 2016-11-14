@@ -52,7 +52,7 @@
         android:layout_height="match_parent"
         android:elevation="3dp"
         android:gravity="center"
-        android:text="暂无数据"/>
+        android:text="暂无内容，敬请期待"/>
 
 
 </LinearLayout>

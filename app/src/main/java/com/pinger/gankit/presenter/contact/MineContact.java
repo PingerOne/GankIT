@@ -10,22 +10,21 @@ package com.pinger.gankit.presenter.contact;
 
 import com.pinger.gankit.base.BasePresenter;
 import com.pinger.gankit.base.BaseView;
-import com.pinger.gankit.model.bean.VideoType;
-
-import java.util.List;
 
 public interface MineContact {
 
     interface View extends BaseView<Presenter> {
+
         boolean isActive();
 
-        void showContent(List<VideoType> types);
+        void loginSuccess();
+
+        void loginFailed();
+
     }
 
     interface Presenter extends BasePresenter {
 
-        void requestHistoryData();
-
-        void delHistoryData();
+        void loginQQ();
     }
 }

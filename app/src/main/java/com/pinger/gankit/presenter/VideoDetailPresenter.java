@@ -5,11 +5,8 @@ import android.support.test.espresso.core.deps.guava.base.Preconditions;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
-import com.pinger.gankit.model.bean.Collection;
-import com.pinger.gankit.model.bean.Record;
 import com.pinger.gankit.model.bean.VideoInfo;
 import com.pinger.gankit.model.bean.VideoRes;
-import com.pinger.gankit.model.db.RealmHelper;
 import com.pinger.gankit.presenter.contact.VideoDetailContact;
 import com.pinger.gankit.utils.BeanUtil;
 import com.pinger.gankit.utils.RxUtil;
@@ -20,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Action1;
 
 /*
  *  @项目名：  GankIT 
@@ -35,14 +31,12 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
 
     public final static String Refresh_Video_Info = "Refresh_Video_Info";
     public final static String Put_DataId = "Put_DataId";
-    public static final String Refresh_Collection_List = "Refresh_Collection_List";
-    public static final String Refresh_History_List = "Refresh_History_List";
     @NonNull
     private final VideoDetailContact.View mView;
     private final int WAIT_TIME = 200;
     private VideoRes result;
-    private String dataId = "";
-    private String pic = "";
+    private String dataId;
+    private String pic;
 
     public VideoDetailPresenter(@NonNull VideoDetailContact.View addTaskView, VideoInfo videoInfo) {
         mView = Preconditions.checkNotNull(addTaskView);
@@ -51,7 +45,6 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
         this.dataId = videoInfo.dataId;
         this.pic = videoInfo.pic;
         requestDetailData(videoInfo.dataId);
-        setCollectState();
         putMediaId();
     }
 
@@ -67,7 +60,6 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
                             mView.showContent(res);
                             result = res;
                             postData();
-                            insertRecord();
                         }
                     }
                 }, throwable -> {
@@ -87,13 +79,10 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
      */
     private void postData() {
         Subscription rxSubscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
-                .compose(RxUtil.<Long>rxSchedulerHelper())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        // 视频详情的简介页需要同样的数据
-                        EventBus.getDefault().post(result, Refresh_Video_Info);
-                    }
+                .compose(RxUtil.rxSchedulerHelper())
+                .subscribe(aLong -> {
+                    // 视频详情的简介页需要同样的数据
+                    EventBus.getDefault().post(result, Refresh_Video_Info);
                 });
         addSubscribe(rxSubscription);
     }
@@ -103,77 +92,11 @@ public class VideoDetailPresenter extends RxPresenter implements VideoDetailCont
      */
     private void putMediaId() {
         Subscription rxSubscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
-                .compose(RxUtil.<Long>rxSchedulerHelper())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        // 将视频id发出去，视频评论列表需要id去查询数据
-                        EventBus.getDefault().post(dataId, Put_DataId);
-                    }
+                .compose(RxUtil.rxSchedulerHelper())
+                .subscribe(aLong -> {
+                    // 将视频id发出去，视频评论列表需要id去查询数据
+                    EventBus.getDefault().post(dataId, Put_DataId);
                 });
         addSubscribe(rxSubscription);
-    }
-
-    @Override
-    public void collect() {
-        if (RealmHelper.getInstance().queryCollectionId(dataId)) {
-            RealmHelper.getInstance().deleteCollection(dataId);
-            mView.disCollect();
-        } else {
-            if (result != null) {
-                Collection bean = new Collection();
-                bean.id = String.valueOf(dataId);
-                bean.pic = pic;
-                bean.title = result.title;
-                bean.airTime = result.airTime;
-                bean.score = result.score;
-                bean.time = System.currentTimeMillis();
-                RealmHelper.getInstance().insertCollection(bean);
-                mView.collected();
-            }
-        }
-        //刷新收藏列表
-        Subscription rxSubscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
-                .compose(RxUtil.<Long>rxSchedulerHelper())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long aLong) {
-                        EventBus.getDefault().post("", Refresh_Collection_List);
-                    }
-                });
-        addSubscribe(rxSubscription);
-    }
-
-
-    @Override
-    public void insertRecord() {
-        if (!RealmHelper.getInstance().queryRecordId(dataId)) {
-            if (result != null) {
-                Record bean = new Record();
-                bean.id = String.valueOf(dataId);
-                bean.pic = pic;
-                bean.title = result.title;
-                bean.time = System.currentTimeMillis();
-                RealmHelper.getInstance().insertRecord(bean, MinePresenter.maxSize);
-                //刷新收藏列表
-                Subscription rxSubscription = Observable.timer(WAIT_TIME, TimeUnit.MILLISECONDS)
-                        .compose(RxUtil.<Long>rxSchedulerHelper())
-                        .subscribe(new Action1<Long>() {
-                            @Override
-                            public void call(Long aLong) {
-                                EventBus.getDefault().post("", Refresh_History_List);
-                            }
-                        });
-                addSubscribe(rxSubscription);
-            }
-        }
-    }
-
-    private void setCollectState() {
-        if (RealmHelper.getInstance().queryCollectionId(dataId)) {
-            mView.collected();
-        } else {
-            mView.disCollect();
-        }
     }
 }

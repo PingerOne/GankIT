@@ -1,4 +1,6 @@
 package com.pinger.gankit.ui.activity;
+
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    ui.activity
@@ -9,6 +11,7 @@ package com.pinger.gankit.ui.activity;
  */
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseActivity;
@@ -19,8 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashActivity extends BaseActivity {
-    @BindView(R.id.splashView)
-    SplashView mSplashView;
+    @BindView(R.id.splashView) @Nullable SplashView mSplashView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

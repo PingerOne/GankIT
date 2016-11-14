@@ -1,4 +1,5 @@
 package com.pinger.gankit.utils;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
@@ -12,14 +13,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.pinger.gankit.model.bean.VideoInfo;
-import com.pinger.gankit.ui.activity.MainActivity;
-import com.pinger.gankit.ui.activity.SplashActivity;
 import com.pinger.gankit.ui.activity.VideoDetailActivity;
 import com.pinger.gankit.ui.activity.VideoListActivity;
 import com.pinger.gankit.ui.activity.WebActivity;
 
 public class JumpUtil {
-
+    private JumpUtil() {
+    }
 
     public static void jump2VideoDetailActivity(Context context, VideoInfo videoInfo) {
         Intent intent = new Intent(context, VideoDetailActivity.class);
@@ -34,17 +34,6 @@ public class JumpUtil {
         context.startActivity(intent);
     }
 
-    public static void jump2VideoListSearchActivity(Context context, String searchStr, String title) {
-        Intent intent = new Intent(context, VideoListActivity.class);
-        intent.putExtra("searchStr", searchStr);
-        intent.putExtra("title", title);
-        context.startActivity(intent);
-    }
-
-    public static void go2MainActivity(Context context) {
-        jumpActivity(context, MainActivity.class);
-        ((SplashActivity) context).finish();
-    }
 
     public static void jumpActivity(Context context, Class<?> clazz) {
         Intent intent = new Intent(context, clazz);

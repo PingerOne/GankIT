@@ -1,4 +1,6 @@
-package com.pinger.gankit.ui.adapter;/*
+package com.pinger.gankit.ui.adapter;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    ui.adapter
  *  @文件名:   BannerAdapter
@@ -48,12 +50,7 @@ public class BannerAdapter extends StaticPagerAdapter {
         //加载图片
         ImageManager.getsInstance().load(mContext, list.get(position).pic, imageView);
         //点击事件
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JumpUtil.jump2VideoDetailActivity(mContext, list.get(position));
-            }
-        });
+        imageView.setOnClickListener(v -> JumpUtil.jump2VideoDetailActivity(mContext, list.get(position)));
         return imageView;
     }
 

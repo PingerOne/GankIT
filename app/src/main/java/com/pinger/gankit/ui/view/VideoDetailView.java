@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
@@ -64,6 +65,7 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
     TextView mTvName;
     private List<Fragment> mFragments;
     private String[] mTitles;
+    private String mVideoUrl;
 
     public VideoDetailView(Context context) {
         this(context, null);
@@ -80,9 +82,9 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
 
     @Override
     protected void initView() {
-        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(20));
-        mIvShare.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_share).sizeDp(20));
-
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(16));
+        mIvShare.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_share).sizeDp(16));
+        mIvShare.setOnClickListener(view -> share());
         initData();
         // 设置ViewPager和TabLayout
         mViewPager.setAdapter(new VideoDetailAdapter(((VideoDetailActivity) mContext).getSupportFragmentManager()));
@@ -93,6 +95,19 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
         mVideoPlayer.backButton.setVisibility(View.GONE);
         mVideoPlayer.titleTextView.setVisibility(View.GONE);
         mVideoPlayer.tinyBackImageView.setVisibility(View.GONE);
+    }
+
+    /**
+     * 分享视频
+     */
+    private void share() {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, String.format(mContext.getString(R.string.share_content_video), mVideoUrl));
+        shareIntent.setType("text/plain");
+
+        //设置分享列表的标题，并且每次都显示分享列表
+        mContext.startActivity(Intent.createChooser(shareIntent, mContext.getString(R.string.share_to_no)));
     }
 
     private void initData() {
@@ -119,6 +134,7 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
             // 显示最上层图片
             ImageManager.getsInstance().load(mContext, videoRes.pic, mVideoPlayer.thumbImageView);
         if (!TextUtils.isEmpty(videoRes.getVideoUrl())) {
+            this.mVideoUrl = videoRes.getVideoUrl();
             // 播放视频
             mVideoPlayer.setUp(videoRes.getVideoUrl()
                     , JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, videoRes.title);
@@ -133,15 +149,6 @@ public class VideoDetailView extends RootView<VideoDetailContact.Presenter> impl
         mLoadingView.setVisibility(GONE);
     }
 
-    @Override
-    public void collected() {
-
-    }
-
-    @Override
-    public void disCollect() {
-
-    }
 
     @Override
     public void setPresenter(VideoDetailContact.Presenter presenter) {

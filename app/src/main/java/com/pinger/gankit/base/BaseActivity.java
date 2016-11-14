@@ -1,11 +1,8 @@
 package com.pinger.gankit.base;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.pinger.gankit.R;
@@ -13,6 +10,7 @@ import com.pinger.gankit.app.App;
 import com.pinger.gankit.utils.ThemeUtil;
 import com.pinger.gankit.widget.theme.Theme;
 
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
 import rx.Subscription;
@@ -26,7 +24,7 @@ import rx.subscriptions.CompositeSubscription;
  *  @描述：    基类Activity,  10.25 升级  11.1 重大升级
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends SupportActivity {
+public class BaseActivity<T extends BasePresenter> extends SupportActivity {
 
     protected Unbinder unbinder;
     protected T mPresenter;
@@ -39,17 +37,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         init();
     }
 
+
     protected void init() {
+        unbinder = ButterKnife.bind(this);
         setTranslucentStatus();
         initAppTheme();
         // 注册Activity
         App.getInstance().registerActivity(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // setTitleHeight(getRootView(this));
     }
 
     /**
@@ -114,16 +108,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-    }
-
-    /**
-     * 获取根View
-     *
-     * @param context
-     * @return
-     */
-    protected static View getRootView(Activity context) {
-        return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
     }
 
     /**

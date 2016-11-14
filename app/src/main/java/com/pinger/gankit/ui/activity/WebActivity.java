@@ -1,7 +1,9 @@
 package com.pinger.gankit.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -33,29 +35,25 @@ public class WebActivity extends SwipeBackActivity {
     public static final String WEB_TITLE = "web_title";
     public static final String WEB_URL = "web_url";
 
-    @BindView(R.id.webView)
-    WebView mWebView;
-    @BindView(R.id.progress_nar)
-    ProgressBar mProgressBar;
-    @BindView(R.id.iv_back)
-    ImageView mIvBack;
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
-    @BindView(R.id.iv_share)
-    ImageView mIvShare;
+    @BindView(R.id.webView) @Nullable WebView mWebView;
+    @BindView(R.id.progress_nar) @Nullable ProgressBar mProgressBar;
+    @BindView(R.id.iv_back) @Nullable ImageView mIvBack;
+    @BindView(R.id.tv_title) @Nullable TextView mTvTitle;
+    @BindView(R.id.iv_share) @Nullable ImageView mIvShare;
     private String mWebTitle;
     private String mWebUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         unbinder = ButterKnife.bind(this);
-
         parseIntent();
         initTitle();
         initWebView();
     }
+
 
     /**
      * 解析Intent数据
@@ -67,8 +65,18 @@ public class WebActivity extends SwipeBackActivity {
 
     private void initTitle() {
         mTvTitle.setText(mWebTitle);
-        mIvBack.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_left).sizeDp(20));
+        mIvBack.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_left).sizeDp(16));
+        mIvShare.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_share).sizeDp(16));
         mIvBack.setOnClickListener(view -> onBackPressed());
+        mIvShare.setOnClickListener(view -> {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, mWebUrl);
+            shareIntent.setType("text/plain");
+
+            //设置分享列表的标题，并且每次都显示分享列表
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_to_no)));
+        });
     }
 
     private void initWebView() {
@@ -79,6 +87,10 @@ public class WebActivity extends SwipeBackActivity {
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
+                if (mProgressBar == null) {
+                    return;
+                }
+
                 mProgressBar.setProgress(newProgress);
                 if (newProgress >= 100) {
                     mProgressBar.setVisibility(View.GONE);

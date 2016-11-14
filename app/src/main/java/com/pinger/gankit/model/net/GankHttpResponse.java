@@ -1,4 +1,6 @@
-package com.pinger.gankit.model.net;/*
+package com.pinger.gankit.model.net;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.model.net
  *  @文件名:   GankHttpResponse

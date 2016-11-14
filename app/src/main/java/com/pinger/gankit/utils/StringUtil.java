@@ -1,4 +1,6 @@
-package com.pinger.gankit.utils;/*
+package com.pinger.gankit.utils;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
  *  @文件名:   StringUtil
@@ -12,6 +14,7 @@ import android.text.TextUtils;
 import java.util.Random;
 
 public class StringUtil {
+    private StringUtil(){}
 
     /**
      * 移除特殊字符

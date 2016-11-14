@@ -59,7 +59,7 @@ public class SwipeDeckAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.item_card, parent, false);
             holder = new ViewHolder(convertView);

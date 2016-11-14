@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.SwipeBackActivity;
@@ -18,10 +19,10 @@ import butterknife.ButterKnife;
  *  @创建时间:  2016/11/11 21:21
  *  @描述：    TODO
  */
+
 public class FuliActivity extends SwipeBackActivity {
 
-    @BindView(R.id.fuliView)
-    FuliView mFuliView;
+    @BindView(R.id.fuliView) @Nullable FuliView mFuliView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

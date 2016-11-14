@@ -1,4 +1,5 @@
 package com.pinger.gankit.presenter;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.presenter.contract
@@ -53,6 +54,12 @@ public class SplashPresenter extends RxPresenter implements SplashContact.Presen
         addSubscribe(rxSubscription);
     }
 
+
+    /**
+     * 将数据封装到集合
+     *
+     * @return
+     */
     private List<String> getSplashData() {
         List<String> imgs = new ArrayList<>();
         imgs.add("file:///android_asset/a.jpg");

@@ -19,8 +19,8 @@ public class Constant {
     public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
     public static final String PATH_CACHE = PATH_DATA + File.separator + "NetCache";
 
-    public static final String FINDVIEW_PAGE = "page";
     public static final String USER_NICK_NAME = "user_nick_name";
-    public static final String USER_AVATER = "avater";
+    public static final String USER_AVATAR = "avatar";
     public static final String IS_LOGIN = "is_login";
+    public static final String FINDVIEW_PAGE = "find_page";
 }

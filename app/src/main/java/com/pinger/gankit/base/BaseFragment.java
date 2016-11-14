@@ -4,19 +4,14 @@ import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pinger.gankit.R;
 import com.pinger.gankit.ui.activity.MainActivity;
-import com.pinger.gankit.ui.fragment.MineFragment;
-import com.pinger.gankit.utils.ScreenUtil;
-import com.pinger.gankit.widget.theme.ColorRelativeLayout;
 import com.pinger.gankit.widget.theme.ColorUiUtil;
 
 import org.simple.eventbus.EventBus;
@@ -38,7 +33,6 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public abstract class BaseFragment<T extends BasePresenter> extends SupportFragment {
 
-    private final String TAG = getClass().getSimpleName();
     protected T mPresenter;
     protected Context mContext;
     protected View rootView;
@@ -73,14 +67,12 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
         unbinder = ButterKnife.bind(this, rootView);
         initView(inflater);
         EventBus.getDefault().register(this);
-        setTitleHeight(rootView);
         return rootView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initEvent();
     }
 
 
@@ -139,15 +131,12 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
      */
     protected abstract void loadData();
 
-    protected void initEvent() {
-    }
-
-
     /**
      * 接收到事件就去执行
      */
     @Subscriber(tag = MainActivity.Set_Theme_Color)
-    public void setTheme(int color) {
+    public void setTheme(int Color) {
+
         final View rootView = getActivity().getWindow().getDecorView();
         rootView.setDrawingCacheEnabled(true);
         rootView.buildDrawingCache(true);
@@ -182,26 +171,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
 
                 }
             }).start();
-        }
-    }
-
-    private void setTitleHeight(View view) {
-        if (view != null) {
-            ColorRelativeLayout title = (ColorRelativeLayout) view.findViewById(R.id.title);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                if (title != null) {
-                    ViewGroup.LayoutParams lp = title.getLayoutParams();
-                    lp.height = ScreenUtil.dip2px(getContext(), 48);
-                    title.setLayoutParams(lp);
-                    title.setPadding(0, 0, 0, 0);
-                }
-                if (TAG.equals(MineFragment.class.getSimpleName())) {
-                    Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-                    ViewGroup.LayoutParams lp = toolbar.getLayoutParams();
-                    lp.height = ScreenUtil.dip2px(getContext(), 48);
-                    toolbar.setLayoutParams(lp);
-                }
-            }
         }
     }
 }

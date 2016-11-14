@@ -1,4 +1,6 @@
-package com.pinger.gankit.ui.adapter;/*
+package com.pinger.gankit.ui.adapter;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    ui.adapter
  *  @文件名:   HomedAdapter

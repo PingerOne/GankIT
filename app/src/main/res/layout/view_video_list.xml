@@ -24,16 +24,16 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/iv_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:scaleType="center"/>
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iv_icon"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -67,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        android:src="@mipmap/ic_arrow_upward_white_24dp"
         app:elevation="4dp"
         app:layout_behavior="com.pinger.gankit.widget.ScrollBelowFabBehavior"/>
 

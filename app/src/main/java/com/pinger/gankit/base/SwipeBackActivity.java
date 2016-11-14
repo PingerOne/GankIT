@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.widget.SwipeBackLayout;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    ui.activity

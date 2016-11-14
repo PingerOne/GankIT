@@ -30,25 +30,30 @@
 
                 <ImageView
                     android:id="@+id/iv_icon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:scaleType="center"/>
 
                 <TextView
-                    android:layout_centerVertical="true"
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/iv_share"
                     android:layout_toRightOf="@id/iv_icon"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <ImageView
                     android:id="@+id/iv_share"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_alignParentRight="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:scaleType="center"/>
 
             </RelativeLayout>

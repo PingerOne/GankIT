@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
  *  @文件名:   RxPhoto
  *  @创建者:   Pinger
  *  @创建时间:  2016/11/13 0:31
- *  @描述：    TODO
+ *  @描述：    对图片的异步操作
  */
 
 public class RxPhoto {

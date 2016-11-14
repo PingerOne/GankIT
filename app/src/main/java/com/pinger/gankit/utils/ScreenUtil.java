@@ -1,4 +1,6 @@
 package com.pinger.gankit.utils;
+
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
@@ -13,6 +15,8 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 
 public class ScreenUtil {
+    private ScreenUtil(){}
+
     /**
      * dp2px
      */

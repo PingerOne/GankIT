@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
@@ -15,7 +16,6 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.pinger.gankit.R;
-import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.base.SwipeBackActivity;
 import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.model.net.RxPhoto;
@@ -44,27 +44,27 @@ public class PhotoActivity extends SwipeBackActivity {
     public static final String IMAGE_TITLE = "image_title";
     public static final String IMAGE_URL = "image_url";
     private static final String TRANSIT_PIC = "pic";
-    @BindView(R.id.picture)
-    PhotoView mPicture;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.root)
-    View mRoot;
-    @BindView(R.id.appbar)
-    AppBarLayout mAppbar;
     private String mImageTitle, mImageUrl;
     private boolean isShow = false;
     private int mAppBarHeight;
     private PhotoViewAttacher mPhotoViewAttacher;
+
+    @BindView(R.id.picture)@Nullable PhotoView mPicture;
+    @BindView(R.id.toolbar) @Nullable Toolbar mToolbar;
+    @BindView(R.id.root) @Nullable View mRoot;
+    @BindView(R.id.appbar) @Nullable AppBarLayout mAppbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
         unbinder = ButterKnife.bind(this);
+        initView();
+    }
 
+    private void initView() {
         parseIntent();
-
         initToolBar(mToolbar, true, mImageTitle);
 
         // 揭露式动画

@@ -58,7 +58,7 @@ public class VideoListView extends RootView<VideoListContact.Presenter> implemen
     private VideoListActivity mActivity;
     private VideoListAdapter mAdapter;
     private VideoInfo videoInfo;
-    private int pageSize = 30;
+    private static final int PAGE_SIZE = 30;
 
     public VideoListView(Context context) {
         this(context, null);
@@ -76,16 +76,15 @@ public class VideoListView extends RootView<VideoListContact.Presenter> implemen
     @Override
     protected void initView() {
         mActivity = (VideoListActivity) mContext;
-        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(20));
-        mFab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_long_arrow_up).sizeDp(24));
+        mIvIcon.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_left).sizeDp(16));
 
         // 设置适配器
         mAdapter = new VideoListAdapter(mContext);
         mRecyclerView.setAdapterWithProgress(mAdapter);
         mRecyclerView.setErrorView(R.layout.view_error);
         // 加载更多
-        mAdapter.setMore(R.layout.view_more, this);
-        mAdapter.setNoMore(R.layout.view_nomore);
+        mAdapter.setMore(R.layout.view_more_white, this);
+        mAdapter.setNoMore(R.layout.view_nomore_white);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3);
         gridLayoutManager.setSpanSizeLookup(mAdapter.obtainGridSpanSizeLookUp(3));
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -147,7 +146,7 @@ public class VideoListView extends RootView<VideoListContact.Presenter> implemen
     @Override
     public void showContent(List<VideoType> typeList) {
         mAdapter.clear();
-        if (typeList != null && typeList.size() < pageSize) {
+        if (typeList != null && typeList.size() < PAGE_SIZE) {
             clearFooter();
         }
         mAdapter.addAll(typeList);

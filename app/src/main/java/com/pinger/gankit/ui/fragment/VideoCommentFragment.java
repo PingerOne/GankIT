@@ -1,4 +1,6 @@
-package com.pinger.gankit.ui.fragment;/*
+package com.pinger.gankit.ui.fragment;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.ui.fragment
  *  @文件名:   VideoCommentFragment

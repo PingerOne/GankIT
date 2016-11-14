@@ -30,7 +30,7 @@ public class NewsActivity extends BaseTabActivity {
     @Override
     protected void initToolBar(TextView tvName, ImageView ivIcon) {
         tvName.setText(getString(R.string.news));
-        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_book).sizeDp(20));
+        ivIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_calendar_note).sizeDp(18));
     }
 
     @Override

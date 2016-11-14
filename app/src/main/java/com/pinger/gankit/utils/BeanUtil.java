@@ -1,4 +1,5 @@
 package com.pinger.gankit.utils;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BeanUtil {
+    private BeanUtil(){}
 
     public static VideoInfo VideoType2VideoInfo(VideoType videoType, VideoInfo videoInfo) {
         if (videoInfo == null)

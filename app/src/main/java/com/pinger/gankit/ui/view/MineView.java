@@ -14,7 +14,6 @@ import com.pinger.gankit.app.Constant;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.model.bean.UserBean;
-import com.pinger.gankit.model.bean.VideoType;
 import com.pinger.gankit.presenter.contact.MineContact;
 import com.pinger.gankit.ui.activity.MainActivity;
 import com.pinger.gankit.utils.SPUtil;
@@ -27,8 +26,6 @@ import com.tencent.tauth.UiError;
 import org.json.JSONObject;
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
-
-import java.util.List;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -92,7 +89,7 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
         }
 
         mTvUserName.setText(SPUtil.getString(mActivity, Constant.USER_NICK_NAME));
-        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvUserAvatar);
+        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATAR), mIvUserAvatar);
     }
 
     /**
@@ -113,7 +110,12 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
     }
 
     @Override
-    public void showContent(List<VideoType> types) {
+    public void loginSuccess() {
+
+    }
+
+    @Override
+    public void loginFailed() {
 
     }
 
@@ -173,7 +175,7 @@ public class MineView extends RootView<MineContact.Presenter> implements MineCon
 
     private void putUserInfo(String name, String imgUrl, boolean isLogin) {
         SPUtil.putString(mActivity, Constant.USER_NICK_NAME, name);
-        SPUtil.putString(mActivity, Constant.USER_AVATER, imgUrl);
+        SPUtil.putString(mActivity, Constant.USER_AVATAR, imgUrl);
         SPUtil.putBoolean(mActivity, Constant.IS_LOGIN, isLogin);
     }
 }

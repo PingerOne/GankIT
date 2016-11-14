@@ -1,4 +1,5 @@
 package com.pinger.gankit.model.bean;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.model.bean
@@ -12,8 +13,6 @@ import android.graphics.drawable.Drawable;
 
 public class AppInfo {
 
-
-    private static final long serialVersionUID = 1L;
     private String appClass;
     private Drawable appIcon;
     private String appLable;

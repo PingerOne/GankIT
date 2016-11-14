@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -28,11 +29,11 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements ColorChooserDialog.ColorCallback, IUiListener {
 
-
     public static final String Set_Theme_Color = "Set_Theme_Color";
     public static final String LOGIND_RESULT = "Login_Result";
     private Long firstTime = 0L;
     @BindView(R.id.main_view)
+    @Nullable
     MainView mMainView;
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
     }
+
 
     @Override
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
@@ -128,7 +130,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
             SPUtil.putString(this, Constant.PRIMARY_COLOR, "#000000");
             SPUtil.putString(this, Constant.TITLE_COLOR, "#0aa485");
         }
-
         // 发送一个事件出去,修改颜色
         EventBus.getDefault().post(selectedColor, Set_Theme_Color);
     }
@@ -140,7 +141,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Col
         } else {
             long secondTime = System.currentTimeMillis();
             if (secondTime - firstTime > 1500) {
-                Snackbar.make(mMainView, "请再按一次退出应用", Snackbar.LENGTH_SHORT)
+                Snackbar.make(mMainView, getString(R.string.exit), Snackbar.LENGTH_SHORT)
                         .show();
                 firstTime = secondTime;
             } else {

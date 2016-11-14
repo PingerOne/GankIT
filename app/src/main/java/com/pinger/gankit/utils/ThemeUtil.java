@@ -1,4 +1,6 @@
 package com.pinger.gankit.utils;
+
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
@@ -22,6 +24,8 @@ import static com.pinger.gankit.utils.SPUtil.getString;
 import static com.pinger.gankit.utils.SPUtil.putString;
 
 public class ThemeUtil {
+    private ThemeUtil() {
+    }
 
     /**
      * 设置文字的Icon

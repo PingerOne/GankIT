@@ -28,6 +28,7 @@ import com.pinger.gankit.utils.ScreenUtil;
 import com.pinger.gankit.widget.ProgressView;
 import com.pinger.gankit.widget.ResideMenu;
 import com.pinger.gankit.widget.SwipeDeck;
+import com.pinger.gankit.widget.theme.ColorTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class FindView extends RootView<FindContact.Presenter> implements FindCon
     @BindView(R.id.swipe_deck)
     SwipeDeck mSwipeDeck;
     @BindView(R.id.btn_next)
-    Button mBtnNext;
+    ColorTextView mBtnNext;
     @BindView(R.id.swipeLayout)
     SwipeFrameLayout mSwipeLayout;
     @BindView(R.id.loading)

@@ -1,4 +1,5 @@
 package com.pinger.gankit.base;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.base

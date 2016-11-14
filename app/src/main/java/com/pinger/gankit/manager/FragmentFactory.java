@@ -22,7 +22,7 @@ import com.pinger.gankit.ui.fragment.gank.WebFragment;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FragmentFactory{
+public class FragmentFactory {
 
     // 缓存Fragment
     private Map<Integer, BaseFragment> mCaches = new HashMap<>();

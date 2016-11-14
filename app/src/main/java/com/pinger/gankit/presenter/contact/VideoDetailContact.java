@@ -21,19 +21,10 @@ public interface VideoDetailContact {
 
         // 隐藏进度
         void hideLoading();
-
-        // 收藏
-        void collected();
-
-        void disCollect();
     }
 
     interface Presenter extends BasePresenter {
         // 请求数据
         void requestDetailData(String videoId);
-
-        void insertRecord();
-
-        void collect();
     }
 }

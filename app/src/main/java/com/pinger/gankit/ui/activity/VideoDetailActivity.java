@@ -1,6 +1,7 @@
 package com.pinger.gankit.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.SwipeBackActivity;
@@ -23,8 +24,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class VideoDetailActivity extends SwipeBackActivity {
 
-    @BindView(R.id.videoDetailView)
-    VideoDetailView mVideoDetailView;
+    @BindView(R.id.videoDetailView) @Nullable VideoDetailView mVideoDetailView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class VideoDetailActivity extends SwipeBackActivity {
         unbinder = ButterKnife.bind(this);
         mPresenter = new VideoDetailPresenter(mVideoDetailView, getIntentData());
     }
+
 
     /**
      * 获取Intent传递过来的数据

@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -47,6 +48,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /*
  *  @项目名：  GankIT 
@@ -101,7 +103,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         mResideMenu = new ResideMenu(mActivity, R.layout.menu_left, R.layout.menu_right);
         mResideMenu.attachToActivity(mActivity);
         mResideMenu.setScaleValue(0.5f);
-        mResideMenu.setUse3D(true);
+//        mResideMenu.setUse3D(true);
 
         View leftMenuView = mResideMenu.getLeftMenuView();
         mIvAvatar = (CircleImageView) leftMenuView.findViewById(R.id.iv_avatar);
@@ -126,7 +128,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         // 更换主题图标
         ThemeUtil.setIconDrawable(mContext, mTvVideo, MaterialDesignIconic.Icon.gmi_videocam, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvGank, MaterialDesignIconic.Icon.gmi_android, 16, 10);
-        ThemeUtil.setIconDrawable(mContext, mTvNews, MaterialDesignIconic.Icon.gmi_book, 16, 10);
+        ThemeUtil.setIconDrawable(mContext, mTvNews, MaterialDesignIconic.Icon.gmi_calendar_note, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvAbout, MaterialDesignIconic.Icon.gmi_account, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvShare, MaterialDesignIconic.Icon.gmi_share, 16, 10);
         ThemeUtil.setIconDrawable(mContext, mTvSetting, MaterialDesignIconic.Icon.gmi_settings, 16, 10);
@@ -135,13 +137,14 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
         ThemeUtil.setIconDrawable(mContext, mTvFuli, MaterialDesignIconic.Icon.gmi_face, 16, 10);
 
         if (!SPUtil.getBoolean(mActivity, Constant.IS_LOGIN, false)) {
-            mIvAvatar.setImageResource(R.mipmap.user_unknow);
+            mIvAvatar.setImageResource(R.mipmap.ic_logo);
             mTvDesc.setText(mContext.getString(R.string.please_login));
+            mIvAvatar.setOnClickListener(view -> Toast.makeText(mActivity, mContext.getString(R.string.qidai), Toast.LENGTH_SHORT).show());
             return;
         }
 
         mTvDesc.setText(SPUtil.getString(mActivity, Constant.USER_NICK_NAME));
-        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATER), mIvAvatar);
+        ImageManager.getsInstance().load(mActivity, SPUtil.getString(mActivity, Constant.USER_AVATAR), mIvAvatar);
     }
 
     @Override
@@ -196,7 +199,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
 
     @Override
     public void showError(String msg) {
-        Snackbar.make(mBottomNavigationView, "出错拉拉拉...", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mBottomNavigationView, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -256,7 +259,7 @@ public class MainView extends RootView<MainContact.Presenter> implements MainCon
                 shareIntent.setType("text/plain");
 
                 // 设置分享列表的标题，并且每次都显示分享列表
-                mContext.startActivity(Intent.createChooser(shareIntent, "分享到"));
+                mContext.startActivity(Intent.createChooser(shareIntent, mContext.getString(R.string.share_to_no)));
                 break;
             case R.id.tv_setting:
                 // 跳转到设置

@@ -2,6 +2,7 @@ package com.pinger.gankit.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.widget.ImageView;
@@ -26,17 +27,12 @@ import butterknife.ButterKnife;
 
 public abstract class BaseTabActivity extends SwipeBackActivity {
 
-    public static final String TAB_FAB = "tab_fab";
-    @BindView(R.id.iv_icon)
-    ImageView mIvIcon;
-    @BindView(R.id.tv_name)
-    TextView mTvName;
-    @BindView(R.id.tabLayout)
-    TabLayout mTabLayout;
-    @BindView(R.id.viewPager)
-    SwipeViewPager mViewPager;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
+    @BindView(R.id.iv_icon) @Nullable ImageView mIvIcon;
+    @BindView(R.id.tv_name) @Nullable TextView mTvName;
+    @BindView(R.id.tabLayout) @Nullable TabLayout mTabLayout;
+    @BindView(R.id.viewPager) @Nullable SwipeViewPager mViewPager;
+    @BindView(R.id.fab) @Nullable FloatingActionButton mFab;
+
     private BaseTabAdapter mAdapter;
 
     @Override

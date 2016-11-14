@@ -1,4 +1,5 @@
 package com.pinger.gankit.model.net;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.model.net
@@ -45,15 +46,6 @@ public interface VideoApis {
      */
     @GET("columns/getVideoList.do")
     Observable<VideoHttpResponse<VideoRes>> getVideoList(@Query("catalogId") String catalogId, @Query("pnum") String pnum);
-
-    /**
-     * 影片搜索
-     *
-     * @param pnum
-     * @return
-     */
-    @GET("searchKeyWordApi/getVideoListByKeyWord.do")
-    Observable<VideoHttpResponse<VideoRes>> getVideoListByKeyWord(@Query("keyword") String keyword, @Query("pnum") String pnum);
 
     /**
      * 获取评论列表

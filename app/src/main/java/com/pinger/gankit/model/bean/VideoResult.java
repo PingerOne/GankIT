@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  *  @创建时间:  2016/11/3 14:42
  *  @描述：    请求视频资源结果
  */
+
 public class VideoResult {
     public String code;
     public String msg;

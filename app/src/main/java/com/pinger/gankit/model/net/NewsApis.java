@@ -3,8 +3,6 @@ package com.pinger.gankit.model.net;
 
 import com.pinger.gankit.model.bean.NewsBean;
 
-import java.util.List;
-
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;

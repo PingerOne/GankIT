@@ -40,13 +40,50 @@
 	* 发现
 	* 我的
 * 干货
-    * 综合
-    * Android
-    * iOS
-    * App
 * 新闻
 * 福利
 * 架构图
+
+
+
+
+
+## 遇到的难题
+* SwipeDeck和ResideMenu的滑动冲突问题
+> 问题描述：SwipeDeck左右切换时会直接作用到ResideMenu上
+>
+> 解决：将SwipeDeck直接添加到ResideMenu上忽略清单中，就可以让SwipeDeck自己处理内部事件。
+ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件处理。
+
+* ViewPager和SwipeBackLayout的滑动冲突问题
+> 问题描述：在可以又滑返回销毁的Activity中ViewPager是没有滑动事件的。
+> 解决：自定义ViewPager，重写dispatchTouchEvent方法，判断左滑时请求不要拦截事件。
+
+* 在侧滑菜单中切换主题后，Fragment中的控件不能切换主题。
+> 问题描述：在MainActivity中切换主题后，在Fragment中并没有切换主题的代码，所以需要将修改主题的代码放置在BaseFragment中，
+                                            然后在MainActivity发送切换主题的消息，BaseFragment订阅到事件后就切换主题。
+
+* 集成PhotoView控件后，图片显示在左上角，不能居中。
+> 解决：在布局文件中直接使用PhotoView，不用ImageView就好了。
+
+
+
+## TODO
+* 制作开发UML图
+* 视频模块搜索功能
+* 将QQ登陆操作移植到Presenter层进行
+* 重构干货和新闻页面，根据构造传入的View来返回加载的数据参数
+
+
+
+## 项目用到的第三方开源类库
+
+
+
+
+
+
+
 
 
 ## 开发日志
@@ -127,33 +164,6 @@
 
 
 
-
-
-## 遇到的难题
-* SwipeDeck和ResideMenu的滑动冲突问题
-> 问题描述：SwipeDeck左右切换时会直接作用到ResideMenu上
->
-> 解决：将SwipeDeck直接添加到ResideMenu上忽略清单中，就可以让SwipeDeck自己处理内部事件。
-ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件处理。
-
-* ViewPager和SwipeBackLayout的滑动冲突问题
-> 问题描述：在可以又滑返回销毁的Activity中ViewPager是没有滑动事件的。
-> 解决：自定义ViewPager，重写dispatchTouchEvent方法，判断左滑时请求不要拦截事件。
-
-* 在侧滑菜单中切换主题后，Fragment中的控件不能切换主题。
-> 问题描述：在MainActivity中切换主题后，在Fragment中并没有切换主题的代码，所以需要将修改主题的代码放置在BaseFragment中，
-                                            然后在MainActivity发送切换主题的消息，BaseFragment订阅到事件后就切换主题。
-
-* 集成PhotoView控件后，图片显示在左上角，不能居中。
-> 解决：在布局文件中直接使用PhotoView，不用ImageView就好了。
-
-
-
-## TODO
-* 视频模块搜索功能
-* 制作开发UML图
-
-## 项目用到的第三方开源类库
 
 
 ## 开源协议

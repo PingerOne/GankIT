@@ -31,6 +31,8 @@ public abstract class GankBasePresenter extends RxPresenter implements GankConta
         // 绑定
         mGankView.setPresenter(this);
         mType = getType();
+
+        // TODO ：根据传入的View来确定类型，不用子类去实现
     }
 
     protected abstract String getType();

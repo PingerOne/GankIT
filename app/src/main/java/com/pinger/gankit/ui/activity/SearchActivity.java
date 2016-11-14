@@ -11,21 +11,12 @@ import android.os.Bundle;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.SwipeBackActivity;
-import com.pinger.gankit.model.bean.VideoInfo;
-
-import java.util.List;
 
 public class SearchActivity extends SwipeBackActivity {
-
-    private List<VideoInfo> mVideoInfos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-        // 获取首页传递过来的数据
-        mVideoInfos = (List<VideoInfo>) getIntent().getSerializableExtra("videoInfos");
-
     }
 }

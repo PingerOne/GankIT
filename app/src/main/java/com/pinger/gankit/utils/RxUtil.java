@@ -1,4 +1,5 @@
 package com.pinger.gankit.utils;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.utils
@@ -9,7 +10,6 @@ package com.pinger.gankit.utils;
  */
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.pinger.gankit.model.net.ApiException;
 import com.pinger.gankit.model.net.GankHttpResponse;
@@ -23,6 +23,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class RxUtil {
+    private RxUtil(){}
 
     /**
      * 统一线程处理

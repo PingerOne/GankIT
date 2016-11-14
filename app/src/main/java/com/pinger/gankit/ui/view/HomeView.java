@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -31,6 +30,7 @@ import com.pinger.gankit.model.bean.VideoInfo;
 import com.pinger.gankit.model.bean.VideoRes;
 import com.pinger.gankit.presenter.contact.HomeContact;
 import com.pinger.gankit.ui.activity.MainActivity;
+import com.pinger.gankit.ui.activity.SearchActivity;
 import com.pinger.gankit.ui.adapter.BannerAdapter;
 import com.pinger.gankit.ui.adapter.HomedAdapter;
 import com.pinger.gankit.utils.JumpUtil;
@@ -63,8 +63,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
     TextView mTitleName;
     @BindView(R.id.title)
     ColorRelativeLayout mTitle;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
     @BindView(R.id.iv_icon)
     ImageView mIvHome;
     HomedAdapter mAdapter;
@@ -97,18 +95,17 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
 
         mResideMenu = mActivity.getResideMenu();
         mResideMenu.addIgnoredView(mBanner);
-        mFab.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_long_arrow_up).sizeDp(24));
     }
 
     private void initHeadView() {
         mTitle.setVisibility(View.GONE);
         mTitleName.setText(mActivity.getString(R.string.video_jingxuan));
-        mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(20));
+        mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(18));
         mHeaderView = LayoutInflater.from(mContext).inflate(R.layout.home_header, null);
         mBanner = ButterKnife.findById(mHeaderView, R.id.banner);
         mRlGoSearch = ButterKnife.findById(mHeaderView, R.id.rlGoSearch);
         mEtSearchKey = ButterKnife.findById(mHeaderView, R.id.etSearchKey);
-        ThemeUtil.setIconDrawable(mContext,mEtSearchKey,MaterialDesignIconic.Icon.gmi_search,14,5);
+        ThemeUtil.setIconDrawable(mContext, mEtSearchKey, MaterialDesignIconic.Icon.gmi_search, 14, 5);
         mBanner.setPlayDelay(2000);
     }
 
@@ -126,9 +123,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
 
     @Override
     protected void initEvent() {
-        // fab点击事件，返回最上页面
-        mFab.setOnClickListener(view -> mRecyclerView.scrollToPosition(0));
-
         // 设置下拉刷新
         mRecyclerView.setRefreshListener(this);
         // 设置滑动事件，实现渐变效果
@@ -162,7 +156,7 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
 
         // 设置搜索点击事件
         mRlGoSearch.setOnClickListener(view -> {
-            Toast.makeText(mContext, "正在努力开发中...", Toast.LENGTH_SHORT).show();
+            JumpUtil.jumpActivity(mContext, SearchActivity.class);
         });
         mIvHome.setOnClickListener(view -> {
             if (mResideMenu.isOpened()) {

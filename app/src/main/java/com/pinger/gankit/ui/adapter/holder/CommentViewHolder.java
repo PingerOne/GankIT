@@ -1,4 +1,6 @@
-package com.pinger.gankit.ui.adapter.holder;/*
+package com.pinger.gankit.ui.adapter.holder;
+
+/*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.ui.adapter.holder
  *  @文件名:   CommentViewHolder

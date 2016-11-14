@@ -17,7 +17,6 @@ import com.pinger.gankit.ui.view.MineView;
 
 public class MinePresenter extends RxPresenter implements MineContact.Presenter {
 
-    public static int maxSize = 30;
     private final MineView mMineView;
 
     public MinePresenter(MineView mineView) {
@@ -27,12 +26,7 @@ public class MinePresenter extends RxPresenter implements MineContact.Presenter 
     }
 
     @Override
-    public void requestHistoryData() {
-
-    }
-
-    @Override
-    public void delHistoryData() {
-
+    public void loginQQ() {
+        // TODO 登录QQ
     }
 }

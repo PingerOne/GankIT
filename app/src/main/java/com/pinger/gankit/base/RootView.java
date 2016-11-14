@@ -1,4 +1,5 @@
 package com.pinger.gankit.base;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.base
@@ -41,12 +42,12 @@ public abstract class RootView<T extends BasePresenter> extends LinearLayout {
     protected void init() {
         mContext = getContext();
         getLayout();
-        unbinder = ButterKnife.bind(this);
-        // 激活Activity
-        mActive = true;
-        initView();
-        initEvent();
-    }
+    unbinder = ButterKnife.bind(this);
+    // 激活Activity
+    mActive = true;
+    initView();
+    initEvent();
+}
 
     public RootView(Context context) {
         super(context);

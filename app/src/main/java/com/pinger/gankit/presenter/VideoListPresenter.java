@@ -75,41 +75,4 @@ public class VideoListPresenter extends RxPresenter implements VideoListContact.
                 });
         addSubscribe(rxSubscription);
     }
-
-/*
-    *//**
-     * 根据关键字获取电影列表
-     *
-     * @param searchStr
-     *//*
-    private void getSearchVideoList(String searchStr) {
-        Subscription rxSubscription = RequestManager.getVideoApi().getVideoListByKeyWord(searchStr, mPage + "")
-                .compose(RxUtil.<VideoHttpResponse<VideoRes>>rxSchedulerHelper())
-                .compose(RxUtil.<VideoRes>handleResult())
-                .subscribe(new Action1<VideoRes>() {
-                    @Override
-                    public void call(VideoRes res) {
-                        if (res != null) {
-                            if (mView.isActive()) {
-                                if (mPage == 1) {
-                                    mView.showContent(res.list);
-                                } else {
-                                    mView.showMoreContent(res.list);
-                                }
-                            }
-                        }
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if (mPage > 1) {
-                            mPage--;
-                        }
-                        mView.refreshFail(StringUtil.getErrorMsg(throwable.getMessage()));
-                    }
-                });
-        addSubscribe(rxSubscription);
-    }*/
-
-
 }

@@ -1,4 +1,5 @@
 package com.pinger.gankit.manager;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.manager
@@ -47,17 +48,6 @@ public class ImageManager {
             Glide.with(activity).load(url).crossFade().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv);
         }
     }
-
-    public void loadAll(Context context, String url, ImageView iv) {    //不缓存，全部从网络加载
-        Glide.with(context).load(url).crossFade().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(iv);
-    }
-
-    public void loadAll(Activity activity, String url, ImageView iv) {    //不缓存，全部从网络加载
-        if (!activity.isDestroyed()) {
-            Glide.with(activity).load(url).crossFade().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).into(iv);
-        }
-    }
-
 
     /**
      * Glide 加载

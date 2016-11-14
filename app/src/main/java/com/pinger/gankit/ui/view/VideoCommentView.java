@@ -70,7 +70,7 @@ public class VideoCommentView extends RootView<VideoCommentContact.Presenter> im
         itemDecoration.setPaddingHeaderFooter(false);
         mRecyclerView.addItemDecoration(itemDecoration);
         mTvEmpty = (TextView) mRecyclerView.getEmptyView();
-        mTvEmpty.setText("暂无评论");
+        mTvEmpty.setText(mContext.getString(R.string.comment_no));
     }
 
     @Override

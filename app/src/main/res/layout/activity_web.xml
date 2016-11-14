@@ -10,6 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar_height"
+        android:background="?attr/colorPrimary"
         android:paddingTop="@dimen/status_bar_height"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
@@ -25,8 +26,9 @@
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:scaleType="center"/>
 
             <TextView
@@ -36,16 +38,17 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/iv_share"
                 android:layout_toRightOf="@+id/iv_back"
+                android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="16sp"/>
 
             <ImageView
                 android:id="@+id/iv_share"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_alignParentRight="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:scaleType="center"/>
         </RelativeLayout>
 

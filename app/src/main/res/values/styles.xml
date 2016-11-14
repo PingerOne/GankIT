@@ -53,7 +53,7 @@
         <item name="colorPrimaryDark">@color/colorBrownPrimaryDark</item>
         <item name="colorAccent">@color/colorBrownPrimaryDark</item>
         <item name="menuBackground">@drawable/brown_background</item>
-        <item name="background">@mipmap/bg7</item>
+        <item name="background">@mipmap/bg3</item>
         <item name="md_title_color">@color/colorBrownPrimary</item>
         <item name="md_link_color">@color/colorBrownPrimary</item>
         <item name="md_positive_color">@color/colorBrownPrimary</item>
@@ -66,7 +66,7 @@
         <item name="colorPrimaryDark">@color/colorGreenPrimaryDark</item>
         <item name="colorAccent">@color/colorGreenPrimaryDark</item>
         <item name="menuBackground">@drawable/green_background</item>
-        <item name="background">@mipmap/bg2</item>
+        <item name="background">@mipmap/bg1</item>
         <item name="md_title_color">@color/colorGreenPrimary</item>
         <item name="md_link_color">@color/colorGreenPrimary</item>
         <item name="md_positive_color">@color/colorGreenPrimary</item>
@@ -90,7 +90,7 @@
         <item name="colorPrimaryDark">@color/colorTealPrimaryDark</item>
         <item name="colorAccent">@color/colorTealPrimaryDark</item>
         <item name="menuBackground">@drawable/teal_background</item>
-        <item name="background">@mipmap/bg4</item>
+        <item name="background">@mipmap/bg1</item>
         <item name="md_title_color">@color/colorTealPrimary</item>
         <item name="md_link_color">@color/colorTealPrimary</item>
         <item name="md_positive_color">@color/colorTealPrimary</item>
@@ -103,7 +103,7 @@
         <item name="colorPrimaryDark">@color/colorPinkPrimaryDark</item>
         <item name="colorAccent">@color/colorPinkPrimaryDark</item>
         <item name="menuBackground">@drawable/pink_background</item>
-        <item name="background">@mipmap/bg5</item>
+        <item name="background">@mipmap/bg3</item>
         <item name="md_title_color">@color/colorPinkPrimary</item>
         <item name="md_link_color">@color/colorPinkPrimary</item>
         <item name="md_positive_color">@color/colorPinkPrimary</item>
@@ -116,7 +116,7 @@
         <item name="colorPrimaryDark">@color/colorDeepPurplePrimaryDark</item>
         <item name="colorAccent">@color/colorDeepPurplePrimaryDark</item>
         <item name="menuBackground">@drawable/deep_purple_background</item>
-        <item name="background">@mipmap/bg6</item>
+        <item name="background">@mipmap/bg2</item>
         <item name="md_title_color">@color/colorDeepPurplePrimary</item>
         <item name="md_link_color">@color/colorDeepPurplePrimary</item>
         <item name="md_positive_color">@color/colorDeepPurplePrimary</item>
@@ -129,7 +129,7 @@
         <item name="colorPrimaryDark">@color/colorOrangePrimaryDark</item>
         <item name="colorAccent">@color/colorOrangePrimaryDark</item>
         <item name="menuBackground">@drawable/orange_background</item>
-        <item name="background">@mipmap/bg5</item>
+        <item name="background">@mipmap/bg3</item>
         <item name="md_title_color">@color/colorOrangePrimary</item>
         <item name="md_link_color">@color/colorOrangePrimary</item>
         <item name="md_positive_color">@color/colorOrangePrimary</item>
@@ -143,7 +143,7 @@
         <item name="colorPrimaryDark">@color/colorIndigoPrimaryDark</item>
         <item name="colorAccent">@color/colorIndigoPrimaryDark</item>
         <item name="menuBackground">@drawable/indigo_background</item>
-        <item name="background">@mipmap/bg6</item>
+        <item name="background">@mipmap/bg1</item>
         <item name="md_title_color">@color/colorIndigoPrimary</item>
         <item name="md_link_color">@color/colorIndigoPrimary</item>
         <item name="md_positive_color">@color/colorIndigoPrimary</item>
@@ -183,7 +183,7 @@
         <item name="colorPrimaryDark">@color/colorLightGreenPrimaryDark</item>
         <item name="colorAccent">@color/colorLightGreenPrimaryDark</item>
         <item name="menuBackground">@drawable/light_green_background</item>
-        <item name="background">@mipmap/bg5</item>
+        <item name="background">@mipmap/bg4</item>
         <item name="md_title_color">@color/colorLightGreenPrimary</item>
         <item name="md_link_color">@color/colorLightGreenPrimary</item>
         <item name="md_positive_color">@color/colorLightGreenPrimary</item>
@@ -197,7 +197,7 @@
         <item name="colorPrimaryDark">@color/colorLimePrimaryDark</item>
         <item name="colorAccent">@color/colorLimePrimaryDark</item>
         <item name="menuBackground">@drawable/lime_background</item>
-        <item name="background">@mipmap/bg5</item>
+        <item name="background">@mipmap/bg3</item>
         <item name="md_title_color">@color/colorLimePrimary</item>
         <item name="md_link_color">@color/colorLimePrimary</item>
         <item name="md_positive_color">@color/colorLimePrimary</item>
@@ -224,7 +224,7 @@
         <item name="colorPrimaryDark">@color/colorBlueGreyPrimaryDark</item>
         <item name="colorAccent">@color/colorBlueGreyPrimaryDark</item>
         <item name="menuBackground">@drawable/blue_grey_background</item>
-        <item name="background">@mipmap/bg8</item>
+        <item name="background">@mipmap/bg4</item>
         <item name="md_title_color">@color/colorBlueGreyPrimary</item>
         <item name="md_link_color">@color/colorBlueGreyPrimary</item>
         <item name="md_positive_color">@color/colorBlueGreyPrimary</item>
@@ -260,14 +260,13 @@
     <style name="ToolBarTitleText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="CollapsingToolbarTitleStyle"
-           parent="TextAppearance.AppCompat.Medium">
+           parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 

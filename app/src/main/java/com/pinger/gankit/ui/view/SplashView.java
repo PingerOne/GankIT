@@ -6,10 +6,11 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.pinger.gankit.R;
-import com.pinger.gankit.ui.activity.SplashActivity;
 import com.pinger.gankit.base.RootView;
 import com.pinger.gankit.manager.ImageManager;
 import com.pinger.gankit.presenter.contact.SplashContact;
+import com.pinger.gankit.ui.activity.MainActivity;
+import com.pinger.gankit.ui.activity.SplashActivity;
 import com.pinger.gankit.utils.JumpUtil;
 import com.pinger.gankit.utils.StringUtil;
 
@@ -80,8 +81,9 @@ public class SplashView extends RootView<SplashContact.Presenter> implements Spl
 
     @Override
     public void jump2Main() {
-        JumpUtil.go2MainActivity(mContext);
+        SplashActivity activity = (SplashActivity) mContext;
+        JumpUtil.jumpActivity(activity, MainActivity.class);
         // 跳转动画
-        ((SplashActivity) mContext).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

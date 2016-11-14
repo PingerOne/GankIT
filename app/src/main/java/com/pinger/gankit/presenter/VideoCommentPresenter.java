@@ -1,6 +1,7 @@
 package com.pinger.gankit.presenter;
 
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
+import android.text.TextUtils;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
@@ -27,7 +28,7 @@ public class VideoCommentPresenter extends RxPresenter implements VideoCommentCo
 
     private final VideoCommentContact.View mView;
     private int mPage = 1;
-    private String mediaId = "";
+    private String mediaId;
 
     public VideoCommentPresenter(VideoCommentView commentView) {
         this.mView = Preconditions.checkNotNull(commentView);
@@ -41,7 +42,7 @@ public class VideoCommentPresenter extends RxPresenter implements VideoCommentCo
     @Override
     public void onRefresh() {
         mPage = 1;
-        if (mediaId != null && !mediaId.equals("")) {
+        if (!TextUtils.isEmpty(mediaId)) {
             getVideoComment(mediaId);
         }
     }
@@ -49,7 +50,7 @@ public class VideoCommentPresenter extends RxPresenter implements VideoCommentCo
     @Override
     public void loadMore() {
         mPage++;
-        if (mediaId != null && mediaId.equals("")) {
+        if (!TextUtils.isEmpty(mediaId)) {
             getVideoComment(mediaId);
         }
     }
@@ -60,7 +61,7 @@ public class VideoCommentPresenter extends RxPresenter implements VideoCommentCo
      * @param mediaId
      */
     private void getVideoComment(String mediaId) {
-        Subscription rxSubscription = RequestManager.getVideoApi().getCommentList(mediaId, mPage + "")
+        Subscription rxSubscription = RequestManager.getVideoApi().getCommentList(mediaId, String.valueOf(mPage))
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
                 .subscribe(res -> {
@@ -91,6 +92,4 @@ public class VideoCommentPresenter extends RxPresenter implements VideoCommentCo
         this.mediaId = mediaId;
         onRefresh();
     }
-
-
 }

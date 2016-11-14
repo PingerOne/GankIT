@@ -1,4 +1,5 @@
 package com.pinger.gankit.ui.fragment;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    ui.fragment.content
@@ -20,7 +21,6 @@ import butterknife.BindView;
 public class MineFragment extends BaseFragment {
 
 
-    public static final String SET_THEME = "set_theme";
     @BindView(R.id.mineView)
     MineView mMineView;
 
@@ -37,6 +37,5 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void initView(LayoutInflater inflater) {
         mPresenter = new MinePresenter(mMineView);
-
     }
 }

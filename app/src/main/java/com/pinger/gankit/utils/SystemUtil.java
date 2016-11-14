@@ -55,7 +55,7 @@ import java.util.Locale;
  */
 
 public class SystemUtil {
-    private static final String TAG = SystemUtil.class.getSimpleName();
+    private SystemUtil(){}
 
     /**
      * 获取系统安装的APP应用
@@ -227,7 +227,6 @@ public class SystemUtil {
     public static void holdSystemAudio(Context context) {
         AudioManager audiomanage = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         // 获取系统最大音量
-        // int maxVolume =
         // audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         // 获取当前音量
         int currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_RING);

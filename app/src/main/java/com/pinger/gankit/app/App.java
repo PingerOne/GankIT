@@ -5,14 +5,9 @@ import android.app.Application;
 
 import com.lzy.ninegrid.NineGridView;
 import com.pinger.gankit.manager.ImageManager;
-import com.pinger.gankit.model.db.RealmHelper;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.rx.RealmObservableFactory;
 
 
 /*
@@ -47,7 +42,6 @@ public class App extends Application {
         super.onCreate();
         instance = this;
 
-        initRealm();
         initNineGridView();
     }
 
@@ -96,19 +90,5 @@ public class App extends Application {
         }
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
-    }
-
-
-    /**
-     * 初始化Realm配置
-     */
-    private void initRealm() {
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
-                .name(RealmHelper.DB_NAME)
-                .schemaVersion(1)
-                .rxFactory(new RealmObservableFactory())
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(realmConfiguration);
     }
 }

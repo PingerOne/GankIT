@@ -2,7 +2,6 @@ package com.pinger.gankit.presenter;
 
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;

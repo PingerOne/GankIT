@@ -1,4 +1,5 @@
 package com.pinger.gankit.presenter.contact;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    com.pinger.gankit.presenter.contract

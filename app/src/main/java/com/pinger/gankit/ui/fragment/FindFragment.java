@@ -1,4 +1,5 @@
 package com.pinger.gankit.ui.fragment;
+
 /*
  *  @项目名：  GankIT 
  *  @包名：    ui.fragment.content

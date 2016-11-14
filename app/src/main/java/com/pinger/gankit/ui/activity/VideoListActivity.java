@@ -10,6 +10,7 @@ package com.pinger.gankit.ui.activity;
  */
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.SwipeBackActivity;
@@ -21,8 +22,7 @@ import butterknife.ButterKnife;
 
 public class VideoListActivity extends SwipeBackActivity {
 
-    @BindView(R.id.videoListView)
-    VideoListView mVideoListView;
+    @BindView(R.id.videoListView) @Nullable VideoListView mVideoListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
