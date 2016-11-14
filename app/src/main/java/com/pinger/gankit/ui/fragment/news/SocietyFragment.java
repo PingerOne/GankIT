@@ -4,6 +4,10 @@ import android.view.LayoutInflater;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseFragment;
+import com.pinger.gankit.presenter.news.NewsSocietyPresenter;
+import com.pinger.gankit.ui.view.news.SocietyView;
+
+import butterknife.BindView;
 
 
 /*
@@ -17,6 +21,9 @@ import com.pinger.gankit.base.BaseFragment;
 
 public class SocietyFragment extends BaseFragment {
 
+    @BindView(R.id.societyView)
+    SocietyView mSocietyView;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_news_society;
@@ -24,11 +31,11 @@ public class SocietyFragment extends BaseFragment {
 
     @Override
     protected void initView(LayoutInflater inflater) {
-
+        mPresenter = new NewsSocietyPresenter(mSocietyView);
     }
 
     @Override
     protected void loadData() {
-
+        ((NewsSocietyPresenter) mPresenter).onRefresh();
     }
 }

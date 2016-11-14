@@ -83,6 +83,9 @@
 * 建立FragmentFactory工厂类生产API对应的Fragment
 * 解决ViewPager与SwipeBackLayout的滑动冲突
 * 完成干货界面的UI框架搭建
+* 研究webp替换png格式文件进行apk瘦身
+* 使用iSparta工具将项目png图片转换成wep图片
+* 图片模糊，重构整个项目，重新提交GitHub
 
 
 ### 2016.11.11
@@ -116,6 +119,13 @@
 * 封装新闻数据的API接口
 * 由于新闻每个Fragment和显示的条目都是一样的，所以将加载数据和显示的适配器抽取成基类
 * 集成NineGridView显示条目的条目，类似于微信朋友圈说说效果，点击还能阅览
+* 复用基类，完成了新闻页面的基本显示
+* 完成点击条目跳转到WebActivity
+* WebActivity根据Intent带过来的标题和Url进行显示
+
+###
+
+
 
 
 

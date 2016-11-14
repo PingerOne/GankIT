@@ -4,7 +4,10 @@ import android.view.LayoutInflater;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseFragment;
+import com.pinger.gankit.presenter.news.NewsGamePresenter;
+import com.pinger.gankit.ui.view.news.GameView;
 
+import butterknife.BindView;
 
 /*
  *  @项目名：  GankIT 
@@ -16,6 +19,9 @@ import com.pinger.gankit.base.BaseFragment;
  */
 
 public class GameFragment extends BaseFragment {
+    @BindView(R.id.gameView)
+    GameView mGameView;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_game;
@@ -23,11 +29,11 @@ public class GameFragment extends BaseFragment {
 
     @Override
     protected void initView(LayoutInflater inflater) {
-
+        mPresenter = new NewsGamePresenter(mGameView);
     }
 
     @Override
     protected void loadData() {
-
+        ((NewsGamePresenter)mPresenter).onRefresh();
     }
 }

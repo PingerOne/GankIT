@@ -4,11 +4,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
+    <com.pinger.gankit.ui.view.news.ScienceView
+        android:id="@+id/scienceView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="科技"/>
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>

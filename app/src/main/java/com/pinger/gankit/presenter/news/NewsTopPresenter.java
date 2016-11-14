@@ -19,6 +19,6 @@ public class NewsTopPresenter extends NewsBasePresenter {
 
     @Override
     protected String getChannelName() {
-        return "国内最新";
+        return "国内焦点";
     }
 }

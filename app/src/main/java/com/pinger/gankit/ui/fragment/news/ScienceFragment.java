@@ -1,9 +1,17 @@
 package com.pinger.gankit.ui.fragment.news;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseFragment;
+import com.pinger.gankit.presenter.news.NewsSciencePresenter;
+import com.pinger.gankit.ui.view.news.ScienceView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /*
@@ -16,6 +24,9 @@ import com.pinger.gankit.base.BaseFragment;
  */
 
 public class ScienceFragment extends BaseFragment {
+    @BindView(R.id.scienceView)
+    ScienceView mScienceView;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_science;
@@ -23,11 +34,11 @@ public class ScienceFragment extends BaseFragment {
 
     @Override
     protected void initView(LayoutInflater inflater) {
-
+        mPresenter = new NewsSciencePresenter(mScienceView);
     }
 
     @Override
     protected void loadData() {
-
+        ((NewsSciencePresenter)mPresenter).onRefresh();
     }
 }

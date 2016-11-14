@@ -2,9 +2,12 @@ package com.pinger.gankit.ui.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.webkit.WebSettings;
+import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.IconicsDrawable;
@@ -29,12 +32,17 @@ public class WebActivity extends SwipeBackActivity {
 
     public static final String WEB_TITLE = "web_title";
     public static final String WEB_URL = "web_url";
-    @BindView(R.id.iv_icon)
-    ImageView mIvIcon;
-    @BindView(R.id.tv_name)
-    TextView mTvName;
+
     @BindView(R.id.webView)
     WebView mWebView;
+    @BindView(R.id.progress_nar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.iv_back)
+    ImageView mIvBack;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.iv_share)
+    ImageView mIvShare;
     private String mWebTitle;
     private String mWebUrl;
 
@@ -57,16 +65,34 @@ public class WebActivity extends SwipeBackActivity {
         mWebUrl = getIntent().getStringExtra(WEB_URL);
     }
 
-
     private void initTitle() {
-        mTvName.setText(mWebTitle);
-        mIvIcon.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_back).sizeDp(20));
-        mIvIcon.setOnClickListener(view -> onBackPressed());
+        mTvTitle.setText(mWebTitle);
+        mIvBack.setImageDrawable(new IconicsDrawable(this).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_arrow_left).sizeDp(20));
+        mIvBack.setOnClickListener(view -> onBackPressed());
     }
 
     private void initWebView() {
-        WebSettings settings = mWebView.getSettings();
-        settings.setJavaScriptEnabled(true);
+        mProgressBar.setMax(100);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setSupportZoom(true);
+        mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                mProgressBar.setProgress(newProgress);
+                if (newProgress >= 100) {
+                    mProgressBar.setVisibility(View.GONE);
+                }
+            }
+        });
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         mWebView.loadUrl(mWebUrl);
     }
 }
+

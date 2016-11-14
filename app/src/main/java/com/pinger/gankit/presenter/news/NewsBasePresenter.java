@@ -1,7 +1,6 @@
 package com.pinger.gankit.presenter.news;
 
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
-import android.util.Log;
 
 import com.pinger.gankit.base.RxPresenter;
 import com.pinger.gankit.manager.RequestManager;
@@ -29,6 +28,8 @@ public abstract class NewsBasePresenter extends RxPresenter implements NewsConta
     public NewsBasePresenter(NewsBaseView newsBaseView) {
         this.mNewsBaseView = Preconditions.checkNotNull(newsBaseView);
         mNewsBaseView.setPresenter(this);
+
+        // TODO：重构：根据不同的View来赋值不同的频道，不需要建立子类去
     }
 
     @Override

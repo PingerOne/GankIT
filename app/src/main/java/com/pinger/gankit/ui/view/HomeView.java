@@ -162,9 +162,6 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
 
         // 设置搜索点击事件
         mRlGoSearch.setOnClickListener(view -> {
-//                Intent intent = new Intent(mContext, SearchActivity.class);
-//                intent.putExtra("videoInfos", (Serializable) videos);
-//                mContext.startActivity(intent);
             Toast.makeText(mContext, "正在努力开发中...", Toast.LENGTH_SHORT).show();
         });
         mIvHome.setOnClickListener(view -> {

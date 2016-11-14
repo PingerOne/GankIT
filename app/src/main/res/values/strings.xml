@@ -16,7 +16,7 @@
 
     <!--新闻顶部指示器-->
     <string-array name="news_title">
-        <item>头条</item>
+        <item>焦点</item>
         <item>社会</item>
         <item>娱乐</item>
         <item>科技</item>

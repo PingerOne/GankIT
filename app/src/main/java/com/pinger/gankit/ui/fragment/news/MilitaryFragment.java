@@ -4,6 +4,10 @@ import android.view.LayoutInflater;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseFragment;
+import com.pinger.gankit.presenter.news.NewsMilitaryPresenter;
+import com.pinger.gankit.ui.view.news.MilitaryView;
+
+import butterknife.BindView;
 
 
 /*
@@ -16,6 +20,9 @@ import com.pinger.gankit.base.BaseFragment;
  */
 
 public class MilitaryFragment extends BaseFragment {
+    @BindView(R.id.militaryView)
+    MilitaryView mMilitaryView;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_military;
@@ -23,11 +30,12 @@ public class MilitaryFragment extends BaseFragment {
 
     @Override
     protected void initView(LayoutInflater inflater) {
-
+        mPresenter = new NewsMilitaryPresenter(mMilitaryView);
     }
 
     @Override
     protected void loadData() {
-
+        ((NewsMilitaryPresenter) mPresenter).onRefresh();
     }
+
 }

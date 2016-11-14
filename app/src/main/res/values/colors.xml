@@ -145,4 +145,16 @@
     <color name="news_title">#333333</color>
     <color name="news_desc">#88333333</color>
 
+    <!--网页加载进度条-->
+    <color name="background_startColor">#ff9d9e9d</color>
+    <color name="background_center">#ff5a5d5a</color>
+    <color name="background_entColor">#ff747674</color>
+    <color name="secondaryProgress_startColor">#A0FF0092</color>
+    <color name="secondaryProgress_center">#A0FF3092</color>
+    <color name="secondaryProgress_entColor">#A0FF3092</color>
+    <color name="progress_startColor">#FF3892</color>
+    <color name="progress_center">#FF2092</color>
+    <color name="progress_entColor">#FF3892</color>
+
+
 </resources>

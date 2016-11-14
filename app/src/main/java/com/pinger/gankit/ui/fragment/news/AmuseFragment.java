@@ -4,6 +4,10 @@ import android.view.LayoutInflater;
 
 import com.pinger.gankit.R;
 import com.pinger.gankit.base.BaseFragment;
+import com.pinger.gankit.presenter.news.NewsAmusePresenter;
+import com.pinger.gankit.ui.view.news.AmuseView;
+
+import butterknife.BindView;
 
 
 /*
@@ -16,6 +20,10 @@ import com.pinger.gankit.base.BaseFragment;
  */
 
 public class AmuseFragment extends BaseFragment {
+
+    @BindView(R.id.amuseView)
+    AmuseView mAmuseView;
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_amuse;
@@ -23,11 +31,11 @@ public class AmuseFragment extends BaseFragment {
 
     @Override
     protected void initView(LayoutInflater inflater) {
-
+        mPresenter = new NewsAmusePresenter(mAmuseView);
     }
 
     @Override
     protected void loadData() {
-
+        ((NewsAmusePresenter) mPresenter).onRefresh();
     }
 }
