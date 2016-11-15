@@ -10,6 +10,42 @@
 	![扫码下载](img/QRcode.png)
 
 
+## 项目简介
+* 基于 MVP + Retrofit + RxJava进行架构
+* 使用Lambda表达式精简代码
+* 使用ResideMenu3D侧滑菜单
+* 使用大量绚丽的Material Design控件
+* 使用MultipleTheme实现无缝切换主题（在MVP架构中使用比较困难，层级太多）
+* 使用IconFont处理项目中大部分小图标
+* 封装Glide框架加载图片
+* 使用Gson解析json数据生成实体bean
+* 使用EventBus实现组件之间的通信
+* 使用ButterKnife绑定id
+* 使用EasyRecyclerView处理数据的展示
+* 使用SwipeBackLayout实现滑动返回销毁Activity
+* 使用节操播放器实现视频播放
+* 使用CardStack实现发现页面的绚丽卡片栈
+* 使用CircleImageView显示圆形头像
+* 使用NineGridView显示新闻里的图片
+* 使用PhotoView实现福利图片的缩放
+* 使用Fiddler抓包咪咕影院数据，干货和福利数据来自与gank.io，新闻数据来自于易源（仅用于学习）
+* 使用LeakCanary检测内存泄漏，并未发现内存泄漏
+* 使用Lint工具检测工程中没有用到的资源文件,设置打包忽略
+* 使用tinypng压缩资源文件
+
+## 功能架构
+* 视频
+	* 精选
+	* 专题
+	* 发现
+	* 我的
+* 干货
+* 新闻
+* 福利
+![功能架构图](img/GankIT_Function.png)
+
+
+
 ## 项目预览
 
 
@@ -65,39 +101,6 @@
 	</tr>
 </table>
 
-## 项目简介
-* 基于 MVP + Retrofit + RxJava进行架构
-* 使用Lambda表达式精简代码
-* 使用ResideMenu3D侧滑菜单
-* 使用大量绚丽的Material Design控件
-* 使用MultipleTheme实现无缝切换主题（在MVP架构中使用比较困难，层级太多）
-* 使用IconFont处理项目中大部分小图标
-* 封装Glide框架加载图片
-* 使用Gson解析json数据生成实体bean
-* 使用EventBus实现组件之间的通信
-* 使用ButterKnife绑定id
-* 使用EasyRecyclerView处理数据的展示
-* 使用SwipeBackLayout实现滑动返回销毁Activity
-* 使用节操播放器实现视频播放
-* 使用CardStack实现发现页面的绚丽卡片栈
-* 使用CircleImageView显示圆形头像
-* 使用NineGridView显示新闻里的图片
-* 使用PhotoView实现福利图片的缩放
-* 使用Fiddler抓包咪咕影院数据，干货和福利数据来自与gank.io，新闻数据来自于易源（仅用于学习）
-* 使用LeakCanary检测内存泄漏，并未发现内存泄漏
-* 使用Lint工具检测工程中没有用到的资源文件,设置打包忽略
-* 使用tinypng压缩资源文件
-
-## 功能架构
-* 视频
-	* 精选
-	* 专题
-	* 发现
-	* 我的
-* 干货
-* 新闻
-* 福利
-![功能架构图](img/GankIT_Function.png)
 
 
 ## 遇到的难题
