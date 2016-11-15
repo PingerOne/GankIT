@@ -6,15 +6,64 @@
 ## APK下载
 * [fir.im下载](http://fir.im/gankit)
 * 扫码下载
-![扫码下载](img/QRcode.png)
+
+	![扫码下载](img/QRcode.png)
 
 
 ## 项目预览
-![视频精选](img/preview1.jpg)![视频发现](img/preview2.jpg)![视频专题列表](img/preview3.jpg)
-![福利](img/preview4.jpg)![干货](img/preview5.jpg)![新闻](img/preview6.jpg)
-![视频精选](img/preview7.jpg)![视频发现](img/preview8.jpg)![视频播放详情](img/preview9.jpg)
-![侧滑菜单](img/preview10.jpg)![干货](img/preview11.jpg)![新闻](img/preview12.jpg)
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<img src="img/preview1.jpg" width="360" height="640"/>
+		</td>
+		<td>
+			<img src="img/preview2.jpg" width="360" height="640" />
+		</td>
+		<td>
+			<img src="img/preview3.jpg" width="360" height="640" />
+		</td>
+	</tr>
 
+
+	<tr>
+		<td>
+			<img src="img/preview4.jpg" width="360" height="640"/>
+		</td>
+		<td>
+			<img src="img/preview5.jpg" width="360" height="640" />
+		</td>
+		<td>
+			<img src="img/preview6.jpg" width="360" height="640" />
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<img src="img/preview7.jpg" width="360" height="640"/>
+		</td>
+		<td>
+			<img src="img/preview8.jpg" width="360" height="640" />
+		</td>
+		<td>
+			<img src="img/preview9.jpg" width="360" height="640" />
+		</td>
+	</tr>
+
+
+	<tr>
+		<td>
+			<img src="img/preview10.jpg" width="360" height="640"/>
+		</td>
+		<td>
+			<img src="img/preview11.jpg" width="360" height="640" />
+		</td>
+		<td>
+			<img src="img/preview12.jpg" width="360" height="640" />
+		</td>
+	</tr>
+
+
+</table>
 
 ## 项目简介
 * 基于 MVP + Retrofit + RxJava进行架构
@@ -37,7 +86,7 @@
 * 使用Fiddler抓包咪咕影院数据，干货和福利数据来自与gank.io，新闻数据来自于易源（仅用于学习）
 * 使用LeakCanary检测内存泄漏，并未发现内存泄漏
 * 使用Lint工具检测工程中没有用到的资源文件,设置打包忽略
-
+* 使用tinypng压缩资源文件
 
 ## 功能架构
 * 视频
@@ -82,11 +131,16 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 
 ## TODO
 * 制作开发UML类图
+* ResideMenu不能悬停问题
+* ResideMenu滑动背景泛白问题
 * 开发视频模块搜索功能
 * 解决切换主题不能立刻切换主页底部导航栏问题
 * 将QQ登陆操作移植到Presenter层进行
 * 重构干货和新闻页面，根据构造传入的View来返回加载的数据参数
 * 完善我的和设置模块内容
+* 重构所有的id，生成ids文件进行管理
+
+
 
 
 ## 项目用到的第三方开源类库（膜拜大神）
@@ -98,6 +152,9 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 * [3D侧滑菜单](https://github.com/SpecialCyCi/AndroidResideMenu)
 
         compile 'com.specyci:residemenu:1.6+'
+
+* [MultipleTheme：无缝切换主题](https://github.com/dersoncheng/MultipleTheme)
+
 
 * [圆形头像](https://github.com/hdodenhof/CircleImageView)
 
@@ -182,16 +239,135 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 * 研究MVP使用
 
 ###  2016.10.22
+###  2016.10.23
 * 初始化项目
 * 将项目上传至GitHub，将项目上传至Coding
 * 抽取APP,BaseActivity,BaseFragment等常见基类
 * 整理常用工具类
-* 集成ResideMenu框架，测试ResideMenu功能
+* 完成Splash界面
 
-### 2016.10.23
+### 2016.10.24
+* 搭建MVP框架
+* 抽取BaseView、BasePresenter,使用泛型规定联系类型
+* 抽取通信基类Contact，建立Presenter层和View层的联系
+* 集成ResideMenu框架，测试ResideMenu功能
+* 初始化左侧菜单
+* 集成MultipleTheme框架
+* 抽取主题颜色，自定义属性
+
+### 2016.10.25
+* 完善主题颜色抽取
+* 集成material-dialogs，弹出颜色选择对话框
+* 保存当前主题到本地，MainActivity读取主题
+* 抽取主题工具类
+* 侧滑菜单UI布局完成
+
+### 2016.10.26
+* 使用BottomNavigationView + ViewPager + Fragment搭建视频界面
+* 切换主题颜色Fragment未发生变化
+* 封装视频数据API
+* 封装RxUtil工具类，管理观察者的生命周期
+* 封装观察者观察结果，生成数据层
+* 研究Rx + Retrofit的使用
+
+
+### 2016.10.27
+* 优化Presenter层加载数据的代码
+* 集成EasyRecyclerView框架
+* 完成HeadView的显示
+* 添加下拉刷新功能
+* 完成视频模块精选功能，预留条目点击接口
+
+
+### 2016.10.28
+* 封装Activity跳转工具类
+* 封装字符串工具类
+
+
+### 2016.10.29
+### 2016.10.30
+* 研究CardStack的使用
+* 使用MVP重构Splash界面
+
+### 2016.10.31
+* 集成CardStack框架
+* 封装API，获取视频集合
+* 封装加载下一页方法上一页方法
+* 给CardStack设置适配器
+* 加载数据成功
+* 优化发现模块布局
+* 完成视频发现模块
+
+### 2016.11.1
+* 简单重构项目，修复一些小问题
+* 完成我的模块UI搭建
+* 研究Coordinator+AppLayout+ToolBar的使用
+
+### 2016.11.2
+* 封装视频类型数据接口
+* 使用EasyRecyclerView显示电影类型
+* 添加下拉刷新功能，封装在Presenter层
+* 研究SwipeBackLayout的使用，可以返回销毁Activity的控件
+* 使用适配器模式，自定义SwipeBackActivity填充SwipeBackLayout布局，继承SwipeBackActivity即可实现滑动返回
+
+### 2016.11.3
+* 封装视频列表数据接口，在Presenter层请求数据
+* 使用EasyRecyclerView展示视频列表数据，使用RecyclerArrayAdapter+Holder抽离条目
+* 增加下拉刷新和上拉加载功能，在Presenter层加载数据
+* 增加分页加载功能，在Presenter层封装
+* 优化视频列表数据加载接口
+
+
+### 2016.11.4
+* 完善所有的Activity跳转
+* 在VideoDetailActivity中获取所以跳转传递过来的VideoInfoBean类，并传入Presenter层
+* 将数据剥离出视频id，封装视频详情数据接口查询数据
+* 获取数据，将数据传入View层
+* 加载数据成功
+* 研究节操视频播放器的使用
+
+
+### 2016.11.5
+* 集成节操播放器
+* 完成了视频播放功能
+* 添加分享功能
+* 搭建底部TabLayout+FramLayout框架
+* 填充VideoCommentFragment和VideoInroFragment
+
+### 2016.11.6
+* 搭建视频简介模块UI
+* 封装数据接口，根据id获取数据简介模块数据
+* Presenter层加载数据传入View层
+* 集成TextViewExpandableAnimation，一个可以拉伸和压缩的TextView
+* 集成EasyRecyclerView，填充简介数据，显示条目
+* 完成视频简介模块，点击跳转到视频详情页播放视频
+
+
+### 2016.11.7
+* 搭建视频评论模块UI
+* 使用EventBus注册订阅者获取数据
+* 使用EasyRecyclerView填充评论条目
+* 添加下拉刷新功能
+* 完成视频评论模块
+
+
+### 2016.11.8
+* 集成QQ登录
+* 使用EventBus发送登录成功回调数据
+* View层更改登录成功后视图
+* 将登录状态保存到服务器
+
+
+### 2016.11.9
+* 简单重构视频播放模块
+* 使用Iconfonts替换所有ToolBar的图标
+* 解决发现页面换一批按钮不随主题切换的bug
+* 封装所有的错误视图显示
+* 封装所有的空视图显示
+* 集成ProgressView，添加加载动画
+* 更新版本
 
 ### 2016.11.10
-* 更新版本
 * 搭建干货界面UI框架
 * 建立FragmentFactory工厂类生产API对应的Fragment
 * 解决ViewPager与SwipeBackLayout的滑动冲突
@@ -244,7 +420,7 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 
 
 ## 开源协议
-	Copyright 2016 PingerWan.
+	Copyright 2016 PingerOne.
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
