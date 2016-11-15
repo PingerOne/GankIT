@@ -11,58 +11,58 @@
 
 
 ## 项目预览
+
+
 <table border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>
-			<img src="img/preview1.jpg" width="360" height="640"/>
+			<img src="img/preview1.jpg"/>
 		</td>
 		<td>
-			<img src="img/preview2.jpg" width="360" height="640" />
+			<img src="img/preview2.jpg"/>
 		</td>
 		<td>
-			<img src="img/preview3.jpg" width="360" height="640" />
+			<img src="img/preview3.jpg"/>
 		</td>
 	</tr>
 
 
 	<tr>
 		<td>
-			<img src="img/preview4.jpg" width="360" height="640"/>
+			<img src="img/preview4.jpg"/>
 		</td>
 		<td>
-			<img src="img/preview5.jpg" width="360" height="640" />
+			<img src="img/preview5.jpg"/>
 		</td>
 		<td>
-			<img src="img/preview6.jpg" width="360" height="640" />
+			<img src="img/preview6.jpg"/>
 		</td>
 	</tr>
 
 	<tr>
 		<td>
-			<img src="img/preview7.jpg" width="360" height="640"/>
+			<img src="img/preview7.jpg" />
 		</td>
 		<td>
-			<img src="img/preview8.jpg" width="360" height="640" />
+			<img src="img/preview8.jpg" />
 		</td>
 		<td>
-			<img src="img/preview9.jpg" width="360" height="640" />
+			<img src="img/preview9.jpg" />
 		</td>
 	</tr>
 
 
 	<tr>
 		<td>
-			<img src="img/preview10.jpg" width="360" height="640"/>
+			<img src="img/preview10.jpg" />
 		</td>
 		<td>
-			<img src="img/preview11.jpg" width="360" height="640" />
+			<img src="img/preview11.jpg" />
 		</td>
 		<td>
-			<img src="img/preview12.jpg" width="360" height="640" />
+			<img src="img/preview12.jpg"/>
 		</td>
 	</tr>
-
-
 </table>
 
 ## 项目简介
@@ -221,6 +221,7 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 
         debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
         releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+
 
 
 
