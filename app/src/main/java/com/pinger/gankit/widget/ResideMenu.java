@@ -189,9 +189,9 @@ public class ResideMenu extends FrameLayout {
 
     private void initValue(Activity activity) {
         this.activity = activity;
-        leftMenuItems = new ArrayList<ResideMenuItem>();
-        rightMenuItems = new ArrayList<ResideMenuItem>();
-        ignoredViews = new ArrayList<View>();
+        leftMenuItems = new ArrayList<>();
+        rightMenuItems = new ArrayList<>();
+        ignoredViews = new ArrayList<>();
         viewDecor = (ViewGroup) activity.getWindow().getDecorView();
         viewActivity = new TouchDisableView(this.activity);
 

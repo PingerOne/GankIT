@@ -50,7 +50,7 @@ public class VideoIntroFragment extends BaseFragment {
     @Override
     protected void initView(LayoutInflater inflater) {
         // 将描述信息作为RecyclerView的头部添加进来
-        mHeadView = View.inflate(mContext,R.layout.intro_header, null);
+        mHeadView = View.inflate(mContext,R.layout.item_intro_header, null);
         mTextViewExpandable = ButterKnife.findById(mHeadView, R.id.textViewExpandable);
 
         // 初始化RecyclerView

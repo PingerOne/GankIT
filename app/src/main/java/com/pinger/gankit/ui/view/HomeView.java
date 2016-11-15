@@ -3,7 +3,6 @@ package com.pinger.gankit.ui.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.test.espresso.core.deps.guava.base.Preconditions;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -101,7 +100,7 @@ public class HomeView extends RootView<HomeContact.Presenter> implements HomeCon
         mTitle.setVisibility(View.GONE);
         mTitleName.setText(mActivity.getString(R.string.video_jingxuan));
         mIvHome.setImageDrawable(new IconicsDrawable(mContext).color(Color.WHITE).icon(MaterialDesignIconic.Icon.gmi_apps).sizeDp(18));
-        mHeaderView = LayoutInflater.from(mContext).inflate(R.layout.home_header, null);
+        mHeaderView = LayoutInflater.from(mContext).inflate(R.layout.include_home_header, null);
         mBanner = ButterKnife.findById(mHeaderView, R.id.banner);
         mRlGoSearch = ButterKnife.findById(mHeaderView, R.id.rlGoSearch);
         mEtSearchKey = ButterKnife.findById(mHeaderView, R.id.etSearchKey);
