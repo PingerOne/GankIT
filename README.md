@@ -383,7 +383,7 @@ ResideMenu会在dispatchTouchEvent方法里对忽略清单里的View进行事件
 
 ### 2016.11.11
 * 对功能重新架构，将干货模块的福利功能分离成一个大功能模块
-* 搭建干货界面model层，封装API
+* 搭建干货界面model层， 封装API
 * 由于干货界面和新闻显示都是ToolBar+TabLayout+ViewPager，所以将其抽取成基类
 * 由于干货界面每个Fragment的样子都一样，条目都一样，所以将加载数据和显示的适配器抽取成基类
 * 复用基类完成了所有干货页面的基本显示
